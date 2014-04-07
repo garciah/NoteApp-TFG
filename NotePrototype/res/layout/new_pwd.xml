@@ -1,0 +1,123 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".EditPwd" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black" >
+
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_height="0px"
+            android:focusable="true"
+            android:focusableInTouchMode="true" >
+
+            <requestFocus />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/titleNewPwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="05dp"
+            android:text="@string/titlePwd"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/textViewUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/titleNewPwd"
+            android:layout_alignTop="@+id/editTextUser"
+            android:text="@string/txtUser"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/textViewPwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textViewUser"
+            android:layout_below="@+id/editTextUser"
+            android:layout_marginTop="20dp"
+            android:text="@string/txtPwd"
+            android:textColor="@color/white" />
+
+        <EditText
+            android:id="@+id/editTextUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editTextTitlePwd"
+            android:layout_marginLeft="26dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@+id/textViewUser"
+            android:background="@color/white"
+            android:ems="10"
+            android:inputType="textNoSuggestions" />
+
+        <TextView
+            android:id="@+id/editTextUrlPwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textViewPwd"
+            android:layout_alignRight="@+id/textViewPwd"
+            android:layout_below="@+id/editTextBodyPwd"
+            android:layout_marginTop="20dp"
+            android:text="@string/txtUrl"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/buttonSavePwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/editTextUrl"
+            android:layout_below="@+id/editTextUrl"
+            android:layout_marginTop="30dp"
+            android:text="@string/save" />
+
+        <EditText
+            android:id="@+id/editTextTitlePwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/editTextUser"
+            android:layout_alignRight="@+id/editTextUser"
+            android:layout_alignTop="@+id/titleNewPwd"
+            android:background="@color/white"
+            android:ems="10"
+            android:inputType="textFilter|textNoSuggestions|textCapSentences"
+            android:maxLength="30"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/editTextBodyPwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/editTextUser"
+            android:layout_alignRight="@+id/editTextUser"
+            android:layout_alignTop="@+id/textViewPwd"
+            android:background="@color/white"
+            android:ems="10"
+            android:inputType="textPassword" />
+
+        <EditText
+            android:id="@+id/editTextUrl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/editTextBodyPwd"
+            android:layout_alignRight="@+id/editTextBodyPwd"
+            android:layout_alignTop="@+id/editTextUrlPwd"
+            android:background="@color/white"
+            android:ems="10"
+            android:inputType="textUri" />
+    </RelativeLayout>
+
+</ScrollView>

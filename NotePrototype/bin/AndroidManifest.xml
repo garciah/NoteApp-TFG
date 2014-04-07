@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.urjc.noteprototype"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="19" />
+    
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="InitWindows"
+            android:label="@string/app_name"
+             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="MenuApp"
+            android:label="@string/menu" >
+        </activity>
+        <activity
+            android:name="EditNote"
+            android:label="@string/butMenu1" >
+        </activity>
+        <activity
+            android:name="EditPwd"
+            android:label="@string/butMenu2" >
+        </activity>
+        <activity
+            android:name="ViewPwd"
+            android:label="@string/butMenu2" >
+        </activity>
+        <activity
+            android:name="NoteList"
+            android:label="@string/butMenu1" >
+        </activity>
+        <activity
+            android:name="PasswordsList"
+            android:label="@string/butMenu2" >
+        </activity>
+        <activity
+            android:name="BuyList"
+            android:label="@string/shopList" >
+        </activity>
+        <activity
+            android:name="EditBuy"
+            android:label="@string/shopList" >
+        </activity>
+        <activity
+            android:name="BuyElemList"
+            android:label="@string/elemList" >
+        </activity>
+        <activity
+            android:name="TaskList"
+            android:label="@string/tasks" >
+        </activity>
+        <activity
+            android:name="EditTask"
+            android:label="@string/task" 
+             android:theme="@android:style/Theme.Dialog">
+        </activity>
+        <activity
+            android:name="EditElement"
+            android:label="@string/elemList"
+            android:theme="@android:style/Theme.Dialog">
+        </activity>  
+		<activity
+            android:name="RecipeList"
+            android:label="@string/recipes" >
+        </activity>  
+        <activity
+            android:name="FileChooser"
+            android:label="@string/recipes" >
+        </activity>  
+        <activity
+            android:name="EditRecipe"
+            android:label="@string/recipes" >
+        </activity>
+        <activity
+            android:name="AccList"
+            android:label="@string/accounts" >
+        </activity>
+        <activity
+            android:name="EditAcc"
+            android:label="@string/accounts">
+        </activity>
+        <activity
+            android:name="TableAccount"
+            android:label="@string/accounts" >
+        </activity>
+        <activity
+            android:name="AccElemList"
+            android:label="@string/accounts" >
+        </activity>
+        <activity
+            android:name="EditElementAcc"
+            android:label="@string/accounts" >
+        </activity>
+        <activity
+            android:name="AboutApp"
+            android:label="@string/about_tit" 
+            android:theme="@android:style/Theme.Dialog">
+        </activity>
+        
+    </application>
+
+</manifest>

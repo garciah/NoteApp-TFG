@@ -1,0 +1,44 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/black"
+    tools:context=".EditBuy" >
+
+    <TextView
+        android:id="@+id/titleBuyNew"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/titleNote"
+        android:textColor="@color/white" />
+
+    <EditText
+        android:id="@+id/editTextTitleBuy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/titleBuyNew"
+        android:layout_marginLeft="18dp"
+        android:layout_toRightOf="@+id/titleBuyNew"
+        android:background="@color/white"
+        android:ems="10"
+        android:inputType="textFilter|textNoSuggestions|textCapSentences"
+        android:maxLength="30"
+        android:textColor="@color/black" />
+
+    <Button
+        android:id="@+id/buttonSaveBuy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/editTextTitleBuy"
+        android:layout_below="@+id/editTextTitleBuy"
+        android:layout_marginTop="16dp"
+        android:text="@string/save" />
+
+</RelativeLayout>
+

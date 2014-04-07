@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentRight="true"
+    android:background="@color/Yellow"
+    android:gravity="center"
+    android:orientation="horizontal" >
+
+    <android.widget.ImageView
+        android:id="@+id/imageRowBuy"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:contentDescription="@string/empty"
+        android:src="@drawable/cart" />
+
+    <TextView
+        android:id="@+id/titleBuy"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.19"
+        android:singleLine="true"
+        android:text="@string/empty"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</LinearLayout>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/black" >
+
+    <TextView
+        android:id="@+id/textViewTagEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/Tag"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/textViewNumEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textViewTagEdit"
+        android:layout_below="@+id/textViewTagEdit"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:text="@string/number"
+        android:textColor="@color/white" />
+
+    <EditText
+        android:id="@+id/editTextNumE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textViewNumEdit"
+        android:layout_alignBottom="@+id/textViewNumEdit"
+        android:layout_toRightOf="@+id/textViewNumEdit"
+        android:background="@color/white"
+        android:ems="10"
+        android:maxLength="6"
+        android:inputType="numberDecimal">
+    </EditText>
+
+    <EditText
+        android:id="@+id/editTextTagE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editTextNumE"
+        android:layout_alignTop="@+id/textViewTagEdit"
+        android:background="@color/white"
+        android:ems="10"
+        android:maxLength="30"
+        android:inputType="textNoSuggestions|textCapSentences" />
+
+    <Button
+        android:id="@+id/buttonSaveElemAcc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/editTextNumE"
+        android:layout_below="@+id/editTextNumE"
+        android:layout_marginTop="15dp"
+        android:text="@string/save" />
+
+</RelativeLayout>
+
