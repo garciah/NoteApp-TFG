@@ -63,4 +63,6 @@
 	<string name="sdcardRoute">/sdcard/</string>
 	<string name="routeImgFiles">/NoteForHome/RecipeImg/</string>
 	<string name="routeImgFilesC">sdcard//NoteForHome/RecipeImg/</string>
+	<string name="exportFile">Exportar fichero</string>
+	<string name="routeExportFile">/NoteForHome/ExportFile/</string>
 </resources>

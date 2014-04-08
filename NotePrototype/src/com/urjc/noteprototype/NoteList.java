@@ -1,5 +1,9 @@
 package com.urjc.noteprototype;
 
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -18,6 +22,7 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 public class NoteList extends ListActivity {
 
 	private static final int MENU_OP1 = 1;
+	private static final int MENU_OP2 = 2;
 	private static final int ACTIVITY_CREATE = 0;
 	private static final int ACTIVITY_EDIT = 1;
 	private NoteDB database;
@@ -29,12 +34,11 @@ public class NoteList extends ListActivity {
 		setContentView(R.layout.notes_list);
 		registerForContextMenu(getListView());
 		database = new NoteDB(this);
-		database.open();
 		fillData();
 	}
 
 	private void fillData() {
-
+		database.open();
 		cursor = database.getCursorAllNotes();
 		String[] from = new String[] { DatabaseHelper.getKeyTitle(),
 				DatabaseHelper.getKeyBody() };
@@ -42,11 +46,13 @@ public class NoteList extends ListActivity {
 		SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
 				R.layout.element_file_note, cursor, from, to, 0);
 		setListAdapter(adapter);
+		database.close();
 	}
 
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
+		database.open();
 		Cursor c = cursor;
 		c.moveToPosition(position);
 		Intent i = new Intent(this, EditNote.class);
@@ -55,6 +61,7 @@ public class NoteList extends ListActivity {
 				.getColumnIndexOrThrow(DatabaseHelper.getKeyTitle())));
 		i.putExtra(DatabaseHelper.getKeyBody(), c.getString(c
 				.getColumnIndexOrThrow(DatabaseHelper.getKeyBody())));
+		database.open();
 		startActivityForResult(i, ACTIVITY_EDIT);
 	}
 
@@ -80,19 +87,52 @@ public class NoteList extends ListActivity {
 			ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
 		menu.add(Menu.NONE, MENU_OP1, Menu.NONE, R.string.menuList1);
+		menu.add(Menu.NONE, MENU_OP2, Menu.NONE, R.string.exportFile);
 	}
 
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
+				.getMenuInfo();
 		switch (item.getItemId()) {
 		case MENU_OP1:
-			AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
-					.getMenuInfo();
+			database.open();
 			database.deleteNote(info.id);
+			database.close();
 			fillData();
 			Toast toast1 = Toast.makeText(getApplicationContext(),
 					R.string.msgDelete, Toast.LENGTH_SHORT);
 			toast1.show();
+			return true;
+		case MENU_OP2:
+			database.open();
+			Cursor c = database.getNoteForId(info.id);
+			c.moveToFirst();
+			String t = c.getString(0);
+			String b = c.getString(1);
+			database.close();
+			try {
+				String file = HandlerFileImportExport.writeFileNote(t, b,
+						getString(R.string.routeExportFile));
+				URI dir = null;
+				try {
+					dir = new URI(file);
+				} catch (URISyntaxException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				if (dir != null) {
+					Intent shareIntent = new Intent();
+					shareIntent.setAction(Intent.ACTION_SEND);
+					shareIntent.putExtra(Intent.EXTRA_STREAM, dir);
+					//shareIntent.setType("text/plain");
+					shareIntent.setType("application/octet-stream");
+					startActivity(Intent.createChooser(shareIntent, "Note"));
+				}
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			return true;
 		default:
 			return super.onContextItemSelected(item);
@@ -124,4 +164,5 @@ public class NoteList extends ListActivity {
 		}
 		return super.onKeyDown(keyCode, event);
 	}
+
 }

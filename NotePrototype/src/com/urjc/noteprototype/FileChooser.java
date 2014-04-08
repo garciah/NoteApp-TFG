@@ -133,6 +133,10 @@ public class FileChooser extends ListActivity {
 				.show();
 		String newRoute = pathAppImgC + o.getName();
 		copyfile(o.getPath(), newRoute);
+		if(!route.equals(newRoute)){
+			File file = new File(route);
+			file.delete();
+		}
 		finish();
 		Intent i = new Intent(this, EditRecipe.class);
 		i.putExtra(DatabaseHelper.getKeyRowid(), id);

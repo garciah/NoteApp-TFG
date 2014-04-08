@@ -1,5 +1,7 @@
 package com.urjc.noteprototype;
 
+import java.io.File;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -29,24 +31,24 @@ public class RecipeList extends ListActivity {
 		setContentView(R.layout.recipe_list);
 		registerForContextMenu(getListView());
 		database = new RecipeDB(this);
-		database.open();
 		fillData();
 	}
 
 	private void fillData() {
-
+		database.open();
 		cursor = database.getCursorAllRecipes();
 		String[] from = new String[] { DatabaseHelper.getKeyTitle() };
 		int[] to = new int[] { R.id.title };
 		SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
 				R.layout.element_file_recipe, cursor, from, to, 0);
 		setListAdapter(adapter);
+		database.close();
 	}
 
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
-
+		database.open();
 		Cursor c = cursor;
 		c.moveToPosition(position);
 		Intent i = new Intent(this, EditRecipe.class);
@@ -60,6 +62,7 @@ public class RecipeList extends ListActivity {
 		i.putExtra(DatabaseHelper.getKeyRoute(), c.getString(c
 				.getColumnIndexOrThrow(DatabaseHelper.getKeyRoute())));
 		i.putExtra("upd",true);
+		database.close();
 		startActivityForResult(i, ACTIVITY_EDIT);
 	}
 
@@ -93,7 +96,15 @@ public class RecipeList extends ListActivity {
 				.getMenuInfo();
 		switch (item.getItemId()) {
 		case MENU_OP1:
+			database.open();
+			Cursor c = database.getRecipeForId(info.id);
+			c.moveToFirst();
+			String routeImg = c.getString(4);
+			System.out.println("-----> "+routeImg);
+			File file = new File(routeImg);
+			file.delete();
 			database.deleteRecipe(info.id);
+			database.close();
 			fillData();
 			Toast toast1 = Toast.makeText(getApplicationContext(),
 					R.string.msgDelRecipe, Toast.LENGTH_SHORT);

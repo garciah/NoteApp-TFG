@@ -30,26 +30,28 @@ public class BuyList extends ListActivity {
 		setContentView(R.layout.buy_list);
 		registerForContextMenu(getListView());
 		database = new BuyDB(this);
-		database.open();
 		fillData();
 	}
 
 	private void fillData() {
-
+		database.open();
 		cursor = database.getCursorAllBuys();
 		String[] from = new String[] { DatabaseHelper.getKeyTitle() };
 		int[] to = new int[] { R.id.titleBuy };
 		SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
 				R.layout.row_buy_list, cursor, from, to, 0);
 		setListAdapter(adapter);
+		database.close();
 	}
 
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
+		database.open();
 		Cursor c = cursor;
 		c.moveToPosition(position);
-		long idAux = Integer.parseInt(cursor.getString(0));
+		long idAux = Integer.parseInt(c.getString(0));
+		database.close();
 		Intent i = new Intent(this, BuyElemList.class);
 		i.putExtra(DatabaseHelper.getKeyTitlebuy(), idAux);
 		startActivity(i);
@@ -87,19 +89,23 @@ public class BuyList extends ListActivity {
 				.getMenuInfo();
 		switch (item.getItemId()) {
 		case MENU_OP1:
+			database.open();
 			database.deleteBuy(info.id);
+			database.close();
 			fillData();
 			Toast toast1 = Toast.makeText(getApplicationContext(),
 					R.string.msgDelElem, Toast.LENGTH_SHORT);
 			toast1.show();
 			return true;
 		case MENU_OP2:
+			database.open();
 			Cursor c = cursor;
 			c.moveToPosition(info.position);
 			Intent i = new Intent(this, EditBuy.class);
 			i.putExtra(DatabaseHelper.getKeyIdbuy(), info.id);
 			i.putExtra(DatabaseHelper.getKeyTitle(), c.getString(c
 					.getColumnIndexOrThrow(DatabaseHelper.getKeyTitle())));
+			database.close();
 			startActivityForResult(i, ACTIVITY_EDIT);
 		default:
 			return super.onContextItemSelected(item);

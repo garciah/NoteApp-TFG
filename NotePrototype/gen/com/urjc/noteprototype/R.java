@@ -197,6 +197,7 @@ public final class R {
         public static final int editTable=0x7f060038;
         public static final int elemList=0x7f060028;
         public static final int empty=0x7f06000f;
+        public static final int exportFile=0x7f06003e;
         public static final int internet=0x7f06002c;
         public static final int less=0x7f060025;
         public static final int menu=0x7f06000a;
@@ -223,6 +224,7 @@ public final class R {
         public static final int photoRecipe=0x7f06002d;
         public static final int recipe=0x7f060033;
         public static final int recipes=0x7f060036;
+        public static final int routeExportFile=0x7f06003f;
         public static final int routeImgFiles=0x7f06003c;
         public static final int routeImgFilesC=0x7f06003d;
         public static final int save=0x7f060010;

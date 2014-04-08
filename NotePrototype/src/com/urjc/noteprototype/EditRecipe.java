@@ -78,6 +78,9 @@ public class EditRecipe extends Activity {
 			public void onClick(View view) {
 				finish();
 				Intent i = new Intent(c, FileChooser.class);
+				String titleAux = title.getText().toString();
+				String ingredientsAux = ingredients.getText().toString();
+				String instructionsAux = instructions.getText().toString();
 				i.putExtra(DatabaseHelper.getKeyRowid(), id);
 				i.putExtra(DatabaseHelper.getKeyTitle(), titleAux);
 				i.putExtra(DatabaseHelper.getKeyIngredients(), ingredientsAux);

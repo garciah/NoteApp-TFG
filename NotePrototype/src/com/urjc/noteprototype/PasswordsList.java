@@ -30,12 +30,11 @@ public class PasswordsList extends ListActivity {
 		setContentView(R.layout.pwds_list);
 		registerForContextMenu(getListView());
 		database = new PwdDB(this);
-		database.open();
 		fillData();
 	}
 
 	private void fillData() {
-
+		database.open();
 		cursor = database.getCursorAllPwds();
 		String[] from = new String[] { DatabaseHelper.getKeyTitle(),
 				DatabaseHelper.getKeyUser() };
@@ -43,12 +42,13 @@ public class PasswordsList extends ListActivity {
 		SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
 				R.layout.element_file_pwd, cursor, from, to, 0);
 		setListAdapter(adapter);
+		database.close();
 	}
 
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
-
+		database.open();
 		Cursor c = cursor;
 		c.moveToPosition(position);
 		Intent i = new Intent(this, ViewPwd.class);
@@ -61,6 +61,7 @@ public class PasswordsList extends ListActivity {
 				.getColumnIndexOrThrow(DatabaseHelper.getKeyPwd())));
 		i.putExtra(DatabaseHelper.getKeyUrl(), c.getString(c
 				.getColumnIndexOrThrow(DatabaseHelper.getKeyUrl())));
+		database.close();
 		startActivity(i);
 	}
 
@@ -95,13 +96,16 @@ public class PasswordsList extends ListActivity {
 				.getMenuInfo();
 		switch (item.getItemId()) {
 		case MENU_OP1:
+			database.open();
 			database.deletePwd(info.id);
+			database.close();	
 			fillData();
 			Toast toast1 = Toast.makeText(getApplicationContext(),
 					R.string.msgDelPwd, Toast.LENGTH_SHORT);
 			toast1.show();
 			return true;
 		case MENU_OP2:
+			database.open();
 			Cursor c = cursor;
 			c.moveToPosition(info.position);
 			Intent i = new Intent(this, EditPwd.class);
@@ -114,6 +118,7 @@ public class PasswordsList extends ListActivity {
 					.getColumnIndexOrThrow(DatabaseHelper.getKeyPwd())));
 			i.putExtra(DatabaseHelper.getKeyUrl(), c.getString(c
 					.getColumnIndexOrThrow(DatabaseHelper.getKeyUrl())));
+			database.close();
 			startActivityForResult(i, ACTIVITY_EDIT);
 		default:
 			return super.onContextItemSelected(item);
