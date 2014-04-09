@@ -66,6 +66,12 @@
                 android:layout_height="wrap_content"
                 android:text="@string/account" />
 
+            <android.widget.Button
+                android:id="@+id/butReadFile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/openFile" />
+
             <Button
                 android:id="@+id/butAbout"
                 android:layout_width="match_parent"

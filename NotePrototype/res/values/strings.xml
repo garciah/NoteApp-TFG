@@ -65,4 +65,5 @@
 	<string name="routeImgFilesC">sdcard//NoteForHome/RecipeImg/</string>
 	<string name="exportFile">Export to file</string>
 	<string name="routeExportFile">/NoteForHome/ExportFile/</string>
+	<string name="openFile">OPEN EXTERNAL FILE</string>
 </resources>

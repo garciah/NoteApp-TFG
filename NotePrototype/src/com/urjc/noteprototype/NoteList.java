@@ -1,12 +1,11 @@
 package com.urjc.noteprototype;
 
+import java.io.File;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
@@ -114,18 +113,13 @@ public class NoteList extends ListActivity {
 			try {
 				String file = HandlerFileImportExport.writeFileNote(t, b,
 						getString(R.string.routeExportFile));
-				URI dir = null;
-				try {
-					dir = new URI(file);
-				} catch (URISyntaxException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				if (dir != null) {
+				if (file != "") {
+					File f = new File(file);
+					Uri path = Uri.fromFile(f);
 					Intent shareIntent = new Intent();
 					shareIntent.setAction(Intent.ACTION_SEND);
-					shareIntent.putExtra(Intent.EXTRA_STREAM, dir);
-					//shareIntent.setType("text/plain");
+					shareIntent.putExtra(Intent.EXTRA_TEXT, "Sharing File NoteForHome");
+					shareIntent.putExtra(Intent.EXTRA_STREAM, path);
 					shareIntent.setType("application/octet-stream");
 					startActivity(Intent.createChooser(shareIntent, "Note"));
 				}

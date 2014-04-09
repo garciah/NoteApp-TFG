@@ -57,6 +57,8 @@ public class HandlerFileImportExport {
 		fos.close();
 		return f.toString();
 	}
+	
+	/**********************************************************************/
 
 	public static Note readFileNote(String titleFile) throws java.io.IOException {
 		FileInputStream fis = new FileInputStream(titleFile);
