@@ -1,6 +1,9 @@
 package com.urjc.noteprototype;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -8,6 +11,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class BuyElemList extends ListActivity {
 
@@ -16,15 +20,48 @@ public class BuyElemList extends ListActivity {
 	private BuyDB database;
 	private Cursor cursor;
 	private long idB;
-
+	private Boolean impFile;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		database = new BuyDB(this);
 		setContentView(R.layout.elem_buy_list);
 		Bundle extras = getIntent().getExtras();
-		idB = extras.getLong(DatabaseHelper.getKeyTitlebuy());
-		fillData(idB);
+		impFile = false;
+		List<ElemBuyList> items = new ArrayList<ElemBuyList>();
+		if (extras != null) {
+			impFile = extras.getBoolean("impFile");
+			if(impFile){
+				String route = extras.getString("accRoute");
+				try {
+					items = HandlerFileImportExport.readFileShopping(route);
+					String title = items.get(0).getName();
+					items.remove(0);
+					database.open();
+					idB = database.createBuy(title);	
+					for(int i=0;i<items.size();i++){
+						String n = items.get(i).getName();
+						int a = items.get(i).getAmount();
+						int c = 0;
+						if(items.get(i).getCheck()){
+							c = 1;
+						}
+						database.createBuyElement(n, a, c, idB);
+					}
+					database.close();
+					Toast.makeText(this, R.string.msgImpBuy,
+							Toast.LENGTH_SHORT).show();
+				} catch (IOException e) {
+					e.printStackTrace();
+					Toast.makeText(this, "Error File", Toast.LENGTH_SHORT)
+							.show();
+				}
+			}else{
+				idB = extras.getLong(DatabaseHelper.getKeyTitlebuy());
+			}
+			fillData(idB);
+		}
 	}
 
 	private void fillData(long idAux) {

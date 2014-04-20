@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
-
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,7 +19,6 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class FileChooser extends ListActivity {
 	private File currentDir;
@@ -129,8 +127,6 @@ public class FileChooser extends ListActivity {
 	}
 
 	private void onFileClick(Option o) {
-		Toast.makeText(this, "File Clicked: " + o.getName(), Toast.LENGTH_SHORT)
-				.show();
 		String newRoute = pathAppImgC + o.getName();
 		copyfile(o.getPath(), newRoute);
 		if(!route.equals(newRoute)){

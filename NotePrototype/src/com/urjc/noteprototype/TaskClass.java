@@ -2,9 +2,9 @@ package com.urjc.noteprototype;
 
 public class TaskClass {
 
-	protected Boolean check;
-	protected String name;
-	protected long id;
+	private Boolean check;
+	private String name;
+	private long id;
 
 	public TaskClass(int check, String name, long id) {
 		super();

@@ -3,7 +3,6 @@ package com.urjc.noteprototype;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -42,17 +41,13 @@ public class EditAcc extends Activity {
 			@Override
 			public void onClick(View view) {
 				String title = titleText.getText().toString();
-				Cursor cursor;
 				if (title.length() > 0) {
 					database.open();
 					if (id != null) {
 						database.updateAccount(id, title);
 						finish();
 					} else {
-						database.createAccount(title);
-						cursor = database.getIdForAcc(title);
-						if (cursor.moveToFirst())
-							id = (long) Integer.parseInt(cursor.getString(0));
+						id = database.createAccount(title);
 						database.close();
 						finish();
 						Intent i = new Intent(c, TableAccount.class);

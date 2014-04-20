@@ -50,6 +50,7 @@ public final class R {
         public static final int saucepan=0x7f020010;
         public static final int searchimg=0x7f020011;
         public static final int separ=0x7f020012;
+        public static final int share=0x7f020013;
     }
     public static final class id {
         public static final int ImageButtonLess=0x7f09000c;
@@ -111,6 +112,7 @@ public final class R {
         public static final int imageRowBuy=0x7f090040;
         public static final int linearLayout1=0x7f09000a;
         public static final int menu_new=0x7f090055;
+        public static final int menu_share=0x7f090056;
         public static final int nameNewElement=0x7f090024;
         public static final int tableAcc=0x7f090046;
         public static final int textView3=0x7f090050;
@@ -174,6 +176,7 @@ public final class R {
     public static final class menu {
         public static final int main=0x7f080000;
         public static final int menu_list=0x7f080001;
+        public static final int menu_list2=0x7f080002;
     }
     public static final class string {
         public static final int Ingredients=0x7f06002e;
@@ -216,6 +219,9 @@ public final class R {
         public static final int msgEditNote=0x7f06001a;
         public static final int msgEditPwd=0x7f06001b;
         public static final int msgEditRecipe=0x7f060032;
+        public static final int msgImpAcc=0x7f060043;
+        public static final int msgImpBuy=0x7f060044;
+        public static final int msgImpTask=0x7f060042;
         public static final int name=0x7f060029;
         public static final int no_elems=0x7f060013;
         public static final int no_notes=0x7f060011;
@@ -232,6 +238,7 @@ public final class R {
         public static final int save=0x7f060010;
         public static final int sdcardRoute=0x7f06003b;
         public static final int separator=0x7f060026;
+        public static final int share=0x7f060041;
         public static final int shopList=0x7f060027;
         public static final int task=0x7f06002b;
         public static final int tasks=0x7f06002a;

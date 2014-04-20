@@ -1,6 +1,7 @@
 package com.urjc.noteprototype;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.app.ListActivity;
 import android.content.Intent;
@@ -33,7 +34,7 @@ public class AccElemList extends ListActivity {
 	private void fillData(long idAux) {
 		database.open();
 		cursor = database.getCursorElements(idAux);
-		ArrayList<AccountElem> items = new ArrayList<AccountElem>();
+		List<AccountElem> items = new ArrayList<AccountElem>();
 		if (cursor.moveToFirst()) {
 			do {
 				long id = cursor.getLong(0);

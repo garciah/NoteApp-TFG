@@ -24,8 +24,10 @@ public class NoteList extends ListActivity {
 	private static final int MENU_OP2 = 2;
 	private static final int ACTIVITY_CREATE = 0;
 	private static final int ACTIVITY_EDIT = 1;
+	private static final int ACTIVITY_EXPORT = 2;
 	private NoteDB database;
 	private Cursor cursor;
+	private File f;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -114,14 +116,14 @@ public class NoteList extends ListActivity {
 				String file = HandlerFileImportExport.writeFileNote(t, b,
 						getString(R.string.routeExportFile));
 				if (file != "") {
-					File f = new File(file);
+					f = new File(file);
 					Uri path = Uri.fromFile(f);
 					Intent shareIntent = new Intent();
 					shareIntent.setAction(Intent.ACTION_SEND);
 					shareIntent.putExtra(Intent.EXTRA_TEXT, "Sharing File NoteForHome");
 					shareIntent.putExtra(Intent.EXTRA_STREAM, path);
 					shareIntent.setType("application/octet-stream");
-					startActivity(Intent.createChooser(shareIntent, "Note"));
+					startActivityForResult(Intent.createChooser(shareIntent, "Note"),ACTIVITY_EXPORT);
 				}
 
 			} catch (IOException e) {
@@ -145,6 +147,9 @@ public class NoteList extends ListActivity {
 		case ACTIVITY_EDIT:
 			fillData();
 			break;
+		case ACTIVITY_EXPORT:
+			f.delete();
+			break;
 		}
 	}
 
@@ -152,7 +157,7 @@ public class NoteList extends ListActivity {
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if ((keyCode == KeyEvent.KEYCODE_BACK)) {
 			finish();
-			Intent i = new Intent(this, MenuApp.class);
+			Intent i = new Intent(this, NoteList.class);
 			startActivity(i);
 			return true;
 		}

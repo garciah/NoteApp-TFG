@@ -1,8 +1,12 @@
 package com.urjc.noteprototype;
 
+import java.io.File;
+import java.io.IOException;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
@@ -19,10 +23,13 @@ public class PasswordsList extends ListActivity {
 
 	private static final int MENU_OP1 = 1;
 	private static final int MENU_OP2 = 2;
+	private static final int MENU_OP3 = 3;
 	private static final int ACTIVITY_CREATE = 0;
 	private static final int ACTIVITY_EDIT = 1;
+	private static final int ACTIVITY_EXPORT = 2;
 	private PwdDB database;
 	private Cursor cursor;
+	private File f;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -88,12 +95,14 @@ public class PasswordsList extends ListActivity {
 		super.onCreateContextMenu(menu, v, menuInfo);
 		menu.add(Menu.NONE, MENU_OP2, Menu.NONE, R.string.menuList2);
 		menu.add(Menu.NONE, MENU_OP1, Menu.NONE, R.string.menuList1);
+		menu.add(Menu.NONE, MENU_OP3, Menu.NONE, R.string.exportFile);
 	}
 
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
 				.getMenuInfo();
+		Cursor c;
 		switch (item.getItemId()) {
 		case MENU_OP1:
 			database.open();
@@ -106,7 +115,7 @@ public class PasswordsList extends ListActivity {
 			return true;
 		case MENU_OP2:
 			database.open();
-			Cursor c = cursor;
+			c = cursor;
 			c.moveToPosition(info.position);
 			Intent i = new Intent(this, EditPwd.class);
 			i.putExtra(DatabaseHelper.getKeyRowid(), info.id);
@@ -120,6 +129,32 @@ public class PasswordsList extends ListActivity {
 					.getColumnIndexOrThrow(DatabaseHelper.getKeyUrl())));
 			database.close();
 			startActivityForResult(i, ACTIVITY_EDIT);
+		case MENU_OP3:
+			database.open();
+			c = cursor;
+			c.moveToPosition(info.position);
+			String t = c.getString(c.getColumnIndexOrThrow(DatabaseHelper.getKeyTitle()));
+			String u = c.getString(c.getColumnIndexOrThrow(DatabaseHelper.getKeyUser()));
+			String p =c.getString(c.getColumnIndexOrThrow(DatabaseHelper.getKeyPwd()));
+			String ur = c.getString(c.getColumnIndexOrThrow(DatabaseHelper.getKeyUrl()));
+			database.close();
+			try {
+				String file = HandlerFileImportExport.writeFilePwd(t, u, p, ur, getString(R.string.routeExportFile));
+				if (file != "") {
+					f = new File(file);
+					Uri path = Uri.fromFile(f);
+					Intent shareIntent = new Intent();
+					shareIntent.setAction(Intent.ACTION_SEND);
+					shareIntent.putExtra(Intent.EXTRA_TEXT, "Sharing File NoteForHome");
+					shareIntent.putExtra(Intent.EXTRA_STREAM, path);
+					shareIntent.setType("application/octet-stream");
+					startActivityForResult(Intent.createChooser(shareIntent, "Pwd"),ACTIVITY_EXPORT);
+				}
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return true;	
 		default:
 			return super.onContextItemSelected(item);
 		}
@@ -137,7 +172,10 @@ public class PasswordsList extends ListActivity {
 		case ACTIVITY_EDIT:
 			fillData();
 			break;
-		}
+		case ACTIVITY_EXPORT:
+			//f.delete();
+			break;
+		}	
 	}
 
 	@Override

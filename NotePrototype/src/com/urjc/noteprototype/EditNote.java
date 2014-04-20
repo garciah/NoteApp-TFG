@@ -2,6 +2,8 @@ package com.urjc.noteprototype;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +17,9 @@ public class EditNote extends Activity {
 	private EditText titleText;
 	private Long id;
 	private NoteDB database;
+	private boolean impFile;
+	private String title;
+	private String body;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,14 +32,14 @@ public class EditNote extends Activity {
 		// Typeface.createFromAsset(getAssets(),"Impregnable_Personal_Use_Only.ttf");
 		// bodyText.setTypeface(font);
 		database = new NoteDB(this);
-
+		impFile = false;
 		id = null;
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
-			String title = extras.getString(DatabaseHelper.getKeyTitle());
-			String body = extras.getString(DatabaseHelper.getKeyBody());
+			title = extras.getString(DatabaseHelper.getKeyTitle());
+			body = extras.getString(DatabaseHelper.getKeyBody());
 			id = extras.getLong(DatabaseHelper.getKeyRowid());
-
+			impFile = extras.getBoolean("impFile");
 			if (title != null) {
 				titleText.setText(title);
 			}
@@ -50,12 +55,20 @@ public class EditNote extends Activity {
 				String body = bodyText.getText().toString();
 				if (title.length() > 0 && body.length() > 0) {
 					database.open();
-					if (id != null) {
-						database.updateNote(id, title, body);
-					} else {
+					if(impFile){
 						database.createNote(title, body);
+					}else{
+						if (id != null) {
+							database.updateNote(id, title, body);
+						} else {
+							database.createNote(title, body);
+						}
 					}
 					database.close();
+					if(impFile){
+						Intent i = new Intent(getApplicationContext(), NoteList.class);
+						startActivity(i);
+					}
 					finish();
 				} else {
 					Toast toast1 = Toast.makeText(getApplicationContext(),
@@ -71,6 +84,22 @@ public class EditNote extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
+	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+			if(impFile){
+				database.open();
+				database.createNote(title, body);
+				database.close();
+				finish();
+				Intent i = new Intent(this, MenuApp.class);
+				startActivity(i);
+				return true;	
+			}
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 
 }

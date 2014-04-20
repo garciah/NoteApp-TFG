@@ -1,7 +1,9 @@
 package com.urjc.noteprototype;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -16,7 +18,12 @@ public class EditPwd extends Activity {
 	private EditText url;
 	private Long id;
 	private PwdDB database;
-
+	private boolean impFile;
+	private String titleAux;
+	private String userAux;
+	private String pwdAux;
+	private String urlAux;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -27,16 +34,16 @@ public class EditPwd extends Activity {
 		pwd = (EditText) findViewById(R.id.editTextBodyPwd);
 		url = (EditText) findViewById(R.id.editTextUrl);
 		database = new PwdDB(this);
-
+		impFile = false;
 		id = null;
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
-			String titleAux = extras.getString(DatabaseHelper.getKeyTitle());
-			String userAux = extras.getString(DatabaseHelper.getKeyUser());
-			String pwdAux = extras.getString(DatabaseHelper.getKeyPwd());
-			String urlAux = extras.getString(DatabaseHelper.getKeyUrl());
+			titleAux = extras.getString(DatabaseHelper.getKeyTitle());
+			userAux = extras.getString(DatabaseHelper.getKeyUser());
+			pwdAux = extras.getString(DatabaseHelper.getKeyPwd());
+			urlAux = extras.getString(DatabaseHelper.getKeyUrl());
 			id = extras.getLong(DatabaseHelper.getKeyRowid());
-
+			impFile = extras.getBoolean("impFile");
 			if (titleAux != null) {
 				title.setText(titleAux);
 			}
@@ -60,13 +67,21 @@ public class EditPwd extends Activity {
 				String urlAux = url.getText().toString();
 				if (titleAux.length() > 0 && pwdAux.length() > 0) {
 					database.open();
-					if (id != null) {
-						database.updatePwd(id, titleAux, pwdAux, userAux,
-								urlAux);
-					} else {
+					if(impFile){
 						database.createPwd(titleAux, pwdAux, userAux, urlAux);
+					}else{
+						if (id != null) {
+							database.updatePwd(id, titleAux, pwdAux, userAux,
+									urlAux);
+						} else {
+							database.createPwd(titleAux, pwdAux, userAux, urlAux);
+						}
 					}
 					database.close();
+					if(impFile){
+						Intent i = new Intent(getApplicationContext(), PasswordsList.class);
+						startActivity(i);
+					}
 					finish();
 				} else {
 					Toast toast1 = Toast.makeText(getApplicationContext(),
@@ -82,6 +97,22 @@ public class EditPwd extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
+	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+			if(impFile){
+				database.open();
+				database.createPwd(titleAux, pwdAux, userAux, urlAux);
+				database.close();
+				finish();
+				Intent i = new Intent(this, PasswordsList.class);
+				startActivity(i);
+				return true;	
+			}
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 
 }

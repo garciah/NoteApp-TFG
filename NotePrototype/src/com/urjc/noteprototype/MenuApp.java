@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 public class MenuApp extends Activity {
 
@@ -88,9 +87,9 @@ public class MenuApp extends Activity {
 		opFile.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				Toast toast1 = Toast.makeText(getApplicationContext(),
-						"Option not available yet", Toast.LENGTH_SHORT);
-				toast1.show();
+				Intent i = new Intent(getApplicationContext(), FileInputChooser.class);
+				startActivity(i);
+				finish();
 			}
 		});
 		

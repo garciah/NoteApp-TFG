@@ -80,20 +80,6 @@ public class AccountDB{
 		return database.query(DatabaseHelper.getDatabaseTableAccount(), allAccs,
 				null, null, null, null, null);
 	}
-	
-	/**
-	 * Return a Cursor over the account with name "account"
-	 * 
-	 * @param acc
-	 * @return Cursor over element with name indicated
-	 */
-	public Cursor getIdForAcc(String acc) {
-		String cond = DatabaseHelper.getKeyTitle();
-		String[] results = new String[] { DatabaseHelper.getKeyIdacc() };
-		String[] args = new String[] { acc };
-		return database.query(DatabaseHelper.getDatabaseTableAccount(), results,
-				cond + "=?", args, null, null, null);
-	}
 
 	/**
 	 * Update account using the details provided.

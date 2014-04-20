@@ -65,5 +65,9 @@
 	<string name="routeImgFilesC">sdcard//NoteForHome/RecipeImg/</string>
 	<string name="exportFile">Export to file</string>
 	<string name="routeExportFile">/NoteForHome/ExportFile/</string>
-	<string name="openFile">OPEN EXTERNAL FILE</string>
+	<string name="openFile">IMPORT EXTERNAL FILE</string>
+	<string name="share">Share</string>
+	<string name="msgImpTask">tasks were added to the list</string>
+	<string name="msgImpAcc">account were added to the list</string>
+	<string name="msgImpBuy">shopping list were added</string>
 </resources>

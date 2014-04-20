@@ -84,20 +84,6 @@ public class BuyDB {
 	}
 
 	/**
-	 * Return a Cursor over the buy with name "buy"
-	 * 
-	 * @param buy
-	 * @return Cursor over element with name indicated
-	 */
-	public Cursor getIdForBuy(String buy) {
-		String cond = DatabaseHelper.getKeyTitle();
-		String[] results = new String[] { DatabaseHelper.getKeyIdbuy() };
-		String[] args = new String[] { buy };
-		return database.query(DatabaseHelper.getDatabaseTableBuy(), results,
-				cond + "=?", args, null, null, null);
-	}
-
-	/**
 	 * Update buy using the details provided.
 	 * 
 	 * @param rowId

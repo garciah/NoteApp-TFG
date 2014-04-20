@@ -1,7 +1,6 @@
 package com.urjc.noteprototype;
 
-import java.util.ArrayList;
-
+import java.util.List;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -16,10 +15,10 @@ import android.widget.Toast;
 public class AccElemAdapter extends BaseAdapter {
 
 	protected Activity activity;
-	protected ArrayList<AccountElem> items;
+	protected List<AccountElem> items;
 	private AccountDB database;
 
-	public  AccElemAdapter(Activity activity, ArrayList<AccountElem> items) {
+	public  AccElemAdapter(Activity activity, List<AccountElem> items) {
 		super();
 		this.activity = activity;
 		this.items = items;
