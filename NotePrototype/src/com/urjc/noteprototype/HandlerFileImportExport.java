@@ -15,6 +15,13 @@ import android.util.Log;
 
 public class HandlerFileImportExport {
 
+	private static final String COD_NOTE = "0001";
+	private static final String COD_PWD = "0002";
+	private static final String COD_TASK = "0003";
+	private static final String COD_RECIPE = "0004";
+	private static final String COD_ACC = "0005";
+	private static final String COD_BUY = "0006";
+	
 	public HandlerFileImportExport() {
 		super();
 	}
@@ -40,6 +47,7 @@ public class HandlerFileImportExport {
 		FileOutputStream fos = new FileOutputStream(f);
 		OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
 		BufferedWriter salida = new BufferedWriter(osw);
+		salida.write(COD_NOTE);
 		salida.write(title+"\n");
 		salida.write(body+"\n");
 		salida.flush();
@@ -51,6 +59,7 @@ public class HandlerFileImportExport {
 		FileInputStream fis = new FileInputStream(titleFile);
 		InputStreamReader isw = new InputStreamReader(fis, "UTF-8");
 		BufferedReader salida = new BufferedReader(isw);
+		salida.readLine();
 		String title = salida.readLine();
 		String body = salida.readLine();
 		fis.close();
@@ -82,6 +91,7 @@ public class HandlerFileImportExport {
 		FileOutputStream fos = new FileOutputStream(f);
 		OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
 		BufferedWriter salida = new BufferedWriter(osw);
+		salida.write(COD_PWD);
 		salida.write(title+"\n");
 		salida.write(user+"\n");
 		salida.write(pwd+"\n");
@@ -95,6 +105,7 @@ public class HandlerFileImportExport {
 		FileInputStream fis = new FileInputStream(titleFile);
 		InputStreamReader isw = new InputStreamReader(fis, "UTF-8");
 		BufferedReader salida = new BufferedReader(isw);
+		salida.readLine();
 		String title = salida.readLine();
 		String user = salida.readLine();
 		String pwd = salida.readLine(); 
@@ -127,6 +138,7 @@ public class HandlerFileImportExport {
 		FileOutputStream fos = new FileOutputStream(f);
 		OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
 		BufferedWriter salida = new BufferedWriter(osw);
+		salida.write(COD_TASK);
 		salida.write(title+"\n");
 		for(int i=0;i<elems.size();i++){
 			salida.write(elems.get(i).getName()+"\n");
@@ -147,6 +159,7 @@ public class HandlerFileImportExport {
 		BufferedReader salida = new BufferedReader(isw);
 		ArrayList<TaskClass> list = new ArrayList<TaskClass>();
 		TaskClass t;
+		salida.readLine();
 		salida.readLine();//title 
 		String name;
         while((name=salida.readLine())!=null){
@@ -180,6 +193,7 @@ public class HandlerFileImportExport {
 		FileOutputStream fos = new FileOutputStream(f);
 		OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
 		BufferedWriter salida = new BufferedWriter(osw);
+		salida.write(COD_ACC);
 		salida.write(title+"\n");
 		for(int i=0;i<elems.size();i++){
 			salida.write(elems.get(i).getTag()+"\n");
@@ -196,6 +210,7 @@ public class HandlerFileImportExport {
 		BufferedReader salida = new BufferedReader(isw);
 		List<AccountElem> list = new ArrayList<AccountElem>();
 		AccountElem a;
+		salida.readLine();
 		String title = salida.readLine();
 		a = new AccountElem(0,title,0,0);
 		list.add(a);
@@ -231,6 +246,7 @@ public class HandlerFileImportExport {
 		FileOutputStream fos = new FileOutputStream(f);
 		OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
 		BufferedWriter salida = new BufferedWriter(osw);
+		salida.write(COD_BUY);
 		salida.write(title+"\n");
 		for(int i=0;i<elems.size();i++){
 			salida.write(elems.get(i).getName()+"\n");
@@ -252,6 +268,7 @@ public class HandlerFileImportExport {
 		BufferedReader salida = new BufferedReader(isw);
 		List<ElemBuyList> list = new ArrayList<ElemBuyList>();
 		ElemBuyList a;
+		salida.readLine();
 		String title = salida.readLine();
 		a = new ElemBuyList(0, title, 0, 0, 0);
 		list.add(a);
@@ -289,6 +306,7 @@ public class HandlerFileImportExport {
 		FileOutputStream fos = new FileOutputStream(f);
 		OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
 		BufferedWriter salida = new BufferedWriter(osw);
+		salida.write(COD_RECIPE);
 		salida.write(title+"\n");
 		salida.write(ingredients+"\n");
 		salida.write(instructions+"\n");
@@ -302,6 +320,7 @@ public class HandlerFileImportExport {
 		FileInputStream fis = new FileInputStream(titleFile);
 		InputStreamReader isw = new InputStreamReader(fis, "UTF-8");
 		BufferedReader salida = new BufferedReader(isw);
+		salida.readLine();
 		String title = salida.readLine();
 		String ingredients = salida.readLine();
 		String instructions = salida.readLine();
@@ -309,5 +328,15 @@ public class HandlerFileImportExport {
 		fis.close();
 		RecipeClass r = new RecipeClass(0, title, ingredients, instructions, imageName);
 		return r;
+	}
+	
+	/**********************************************************************/
+	public static String readCode(String titleFile)throws java.io.IOException {
+		FileInputStream fis = new FileInputStream(titleFile);
+		InputStreamReader isw = new InputStreamReader(fis, "UTF-8");
+		BufferedReader salida = new BufferedReader(isw);
+		String s = salida.readLine();
+		fis.close();
+		return s;
 	}
 }

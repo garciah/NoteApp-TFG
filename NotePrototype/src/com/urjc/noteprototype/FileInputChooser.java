@@ -18,6 +18,12 @@ import android.widget.Toast;
 public class FileInputChooser extends ListActivity {
 	private File currentDir;
 	private FileArrayAdapter adapter;
+	private static final String COD_NOTE = "0001";
+	private static final String COD_PWD = "0002";
+	private static final String COD_TASK = "0003";
+	private static final String COD_RECIPE = "0004";
+	private static final String COD_ACC = "0005";
+	private static final String COD_BUY = "0006";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -40,32 +46,7 @@ public class FileInputChooser extends ListActivity {
 					dir.add(new Option(ff.getName(), "Folder", ff
 							.getAbsolutePath()));
 				else {
-					boolean validFile = false;
-					if (ff.getName().contains("_note.nfh")) {
-						validFile = true;
-					} else {
-						if (ff.getName().contains("_task.nfh")) {
-							validFile = true;
-						}else{
-							if (ff.getName().contains("_pwd.nfh")) {
-								validFile = true;
-							}else{
-								if (ff.getName().contains("_acc.nfh")) {
-									validFile = true;
-								}else{
-									if (ff.getName().contains("_buy.nfh")) {
-										validFile = true;
-									}else{
-										if (ff.getName().contains("_recipe.nfh")) {
-											validFile = true;
-										}
-									}
-								}
-							}
-						}
-					}
-
-					if (validFile) {
+					if (ff.getName().contains(".nfh")) {
 						fls.add(new Option(ff.getName(), "File Size: "
 								+ ff.length(), ff.getAbsolutePath()));
 					}
@@ -112,11 +93,19 @@ public class FileInputChooser extends ListActivity {
 	}
 
 	private void onFileClick(Option o) {
-		if (o.getName().contains("_note.nfh")) {
+		String cod = "0000";
+		Intent i;
+		try {
+			cod = HandlerFileImportExport.readCode(o.getPath());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		switch (cod) {
+		case COD_NOTE:
 			try {
 				Note n = new Note();
 				n = HandlerFileImportExport.readFileNote(o.getPath());
-				Intent i = new Intent(this, EditNote.class);
+				i = new Intent(this, EditNote.class);
 				i.putExtra(DatabaseHelper.getKeyTitle(), n.getTitle());
 				i.putExtra(DatabaseHelper.getKeyBody(), n.getBody());
 				i.putExtra("impFile", true);
@@ -127,74 +116,76 @@ public class FileInputChooser extends ListActivity {
 				Toast.makeText(this, "Error File: " + o.getName(),
 						Toast.LENGTH_SHORT).show();
 			}
-		} else {
-			if (o.getName().contains("_task.nfh")) {
-				Intent i = new Intent(this, TaskList.class);
-				i.putExtra("taskRoute", o.getPath());
+			break;
+		case COD_TASK:
+			i = new Intent(this, TaskList.class);
+			i.putExtra("taskRoute", o.getPath());
+			startActivity(i);
+			finish();
+			break;
+		case COD_PWD:
+			try {
+				PwdClass p = new PwdClass();
+				p = HandlerFileImportExport.readFilePwd(o.getPath());
+				i = new Intent(this, EditPwd.class);
+				i.putExtra(DatabaseHelper.getKeyTitle(), p.getTitle());
+				i.putExtra(DatabaseHelper.getKeyUser(), p.getUser());
+				i.putExtra(DatabaseHelper.getKeyPwd(), p.getPwd());
+				i.putExtra(DatabaseHelper.getKeyUrl(), p.getUrl());
+				i.putExtra("impFile", true);
 				startActivity(i);
 				finish();
-			}else{
-				if (o.getName().contains("_pwd.nfh")) {
-					try {
-						PwdClass p = new PwdClass();
-						p = HandlerFileImportExport.readFilePwd(o.getPath());
-						Intent i = new Intent(this, EditPwd.class);
-						i.putExtra(DatabaseHelper.getKeyTitle(), p.getTitle());
-						i.putExtra(DatabaseHelper.getKeyUser(), p.getUser());
-						i.putExtra(DatabaseHelper.getKeyPwd(), p.getPwd());
-						i.putExtra(DatabaseHelper.getKeyUrl(), p.getUrl());
-						i.putExtra("impFile", true);
-						startActivity(i);
-						finish();
-					} catch (IOException e) {
-						e.printStackTrace();
-						Toast.makeText(this, "Error File: " + o.getName(),
-								Toast.LENGTH_SHORT).show();
-					}
-				}else{
-					if (o.getName().contains("_acc.nfh")) {
-						Intent i = new Intent(this, TableAccount.class);
-						i.putExtra("impFile", true);
-						i.putExtra("accRoute", o.getPath());
-						startActivity(i);
-						finish();
-					}else{
-						if (o.getName().contains("_buy.nfh")) {
-							Intent i = new Intent(this, BuyElemList.class);
-							i.putExtra("impFile", true);
-							i.putExtra("accRoute", o.getPath());
-							startActivity(i);
-							finish();
-						}else{
-							if (o.getName().contains("_recipe.nfh")) {
-								try {
-									RecipeClass r = new RecipeClass();
-									r = HandlerFileImportExport.readFileRecipe(o.getPath());
-									Intent i = new Intent(this, EditRecipe.class);
-									i.putExtra(DatabaseHelper.getKeyTitle(), r.getTitle());
-									i.putExtra(DatabaseHelper.getKeyIngredients(), r.getIngredients());
-									i.putExtra(DatabaseHelper.getKeyInstructions(), r.getInstructions());
-									String[] aux = o.getPath().split("/");
-									String imgPath = "";
-									for(int k=0;k<aux.length-1;k++){
-										imgPath = imgPath+aux[k]+"/";
-									}
-									imgPath = imgPath + r.getImageName();
-									i.putExtra(DatabaseHelper.getKeyRoute(), imgPath);
-									i.putExtra("imgName", r.getImageName());
-									i.putExtra("impFile", true);
-									startActivity(i);
-									finish();
-								} catch (IOException e) {
-									e.printStackTrace();
-									Toast.makeText(this, "Error File: " + o.getName(),
-											Toast.LENGTH_SHORT).show();
-								}
-							}
-						}
-					}
-				}
+			} catch (IOException e) {
+				e.printStackTrace();
+				Toast.makeText(this, "Error File: " + o.getName(),
+						Toast.LENGTH_SHORT).show();
 			}
+			break;
+		case COD_ACC:
+			i = new Intent(this, TableAccount.class);
+			i.putExtra("impFile", true);
+			i.putExtra("accRoute", o.getPath());
+			startActivity(i);
+			finish();
+			break;
+		case COD_BUY:
+			i = new Intent(this, BuyElemList.class);
+			i.putExtra("impFile", true);
+			i.putExtra("accRoute", o.getPath());
+			startActivity(i);
+			finish();
+			break;
+		case COD_RECIPE:
+			try {
+				RecipeClass r = new RecipeClass();
+				r = HandlerFileImportExport.readFileRecipe(o.getPath());
+				i = new Intent(this, EditRecipe.class);
+				i.putExtra(DatabaseHelper.getKeyTitle(), r.getTitle());
+				i.putExtra(DatabaseHelper.getKeyIngredients(),
+						r.getIngredients());
+				i.putExtra(DatabaseHelper.getKeyInstructions(),
+						r.getInstructions());
+				String[] aux = o.getPath().split("/");
+				String imgPath = "";
+				for (int k = 0; k < aux.length - 1; k++) {
+					imgPath = imgPath + aux[k] + "/";
+				}
+				imgPath = imgPath + r.getImageName();
+				i.putExtra(DatabaseHelper.getKeyRoute(), imgPath);
+				i.putExtra("imgName", r.getImageName());
+				i.putExtra("impFile", true);
+				startActivity(i);
+				finish();
+			} catch (IOException e) {
+				e.printStackTrace();
+				Toast.makeText(this, "Error File: " + o.getName(),
+						Toast.LENGTH_SHORT).show();
+			}
+			break;
+		default:
+			Toast.makeText(this, "Error File: " + o.getName(),
+					Toast.LENGTH_SHORT).show();
+			break;
 		}
 	}
 
