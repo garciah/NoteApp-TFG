@@ -267,4 +267,47 @@ public class HandlerFileImportExport {
 	}
 	
 	/**********************************************************************/
+	
+	public static String writeFileRecipe(String title, String ingredients, String instructions,String imageName, String route)
+			throws java.io.IOException {
+		File folder = new File(Environment.getExternalStorageDirectory(),
+				route);
+		if (!folder.exists()) {
+			if (!folder.mkdirs()) {
+				Log.e("TravellerLog :: ", "Problem creating folder");
+			}
+		}
+		String tAux = "";
+		for (int x=0; x < title.length(); x++) {
+			if (title.charAt(x) != ' ')
+			    tAux += title.charAt(x);
+			}
+		File f = new File(folder, tAux+"_recipe.nfh");
+		if (!f.exists()) {
+			f.createNewFile();
+		}	
+		FileOutputStream fos = new FileOutputStream(f);
+		OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
+		BufferedWriter salida = new BufferedWriter(osw);
+		salida.write(title+"\n");
+		salida.write(ingredients+"\n");
+		salida.write(instructions+"\n");
+		salida.write(imageName+"\n");
+		salida.flush();
+		fos.close();
+		return f.toString();
+	}
+	
+	public static RecipeClass readFileRecipe(String titleFile) throws java.io.IOException {
+		FileInputStream fis = new FileInputStream(titleFile);
+		InputStreamReader isw = new InputStreamReader(fis, "UTF-8");
+		BufferedReader salida = new BufferedReader(isw);
+		String title = salida.readLine();
+		String ingredients = salida.readLine();
+		String instructions = salida.readLine();
+		String imageName = salida.readLine();
+		fis.close();
+		RecipeClass r = new RecipeClass(0, title, ingredients, instructions, imageName);
+		return r;
+	}
 }

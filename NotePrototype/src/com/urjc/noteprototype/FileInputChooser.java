@@ -55,6 +55,10 @@ public class FileInputChooser extends ListActivity {
 								}else{
 									if (ff.getName().contains("_buy.nfh")) {
 										validFile = true;
+									}else{
+										if (ff.getName().contains("_recipe.nfh")) {
+											validFile = true;
+										}
 									}
 								}
 							}
@@ -161,6 +165,32 @@ public class FileInputChooser extends ListActivity {
 							i.putExtra("accRoute", o.getPath());
 							startActivity(i);
 							finish();
+						}else{
+							if (o.getName().contains("_recipe.nfh")) {
+								try {
+									RecipeClass r = new RecipeClass();
+									r = HandlerFileImportExport.readFileRecipe(o.getPath());
+									Intent i = new Intent(this, EditRecipe.class);
+									i.putExtra(DatabaseHelper.getKeyTitle(), r.getTitle());
+									i.putExtra(DatabaseHelper.getKeyIngredients(), r.getIngredients());
+									i.putExtra(DatabaseHelper.getKeyInstructions(), r.getInstructions());
+									String[] aux = o.getPath().split("/");
+									String imgPath = "";
+									for(int k=0;k<aux.length-1;k++){
+										imgPath = imgPath+aux[k]+"/";
+									}
+									imgPath = imgPath + r.getImageName();
+									i.putExtra(DatabaseHelper.getKeyRoute(), imgPath);
+									i.putExtra("imgName", r.getImageName());
+									i.putExtra("impFile", true);
+									startActivity(i);
+									finish();
+								} catch (IOException e) {
+									e.printStackTrace();
+									Toast.makeText(this, "Error File: " + o.getName(),
+											Toast.LENGTH_SHORT).show();
+								}
+							}
 						}
 					}
 				}

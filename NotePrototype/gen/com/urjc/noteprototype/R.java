@@ -14,6 +14,7 @@ public final class R {
         public static final int Blue=0x7f040006;
         public static final int BlueDark=0x7f040007;
         public static final int Green=0x7f040005;
+        public static final int Grey=0x7f040008;
         public static final int Red=0x7f040004;
         public static final int Yellow=0x7f040002;
         public static final int YellowDark=0x7f040003;
@@ -221,6 +222,9 @@ public final class R {
         public static final int msgEditRecipe=0x7f060032;
         public static final int msgImpAcc=0x7f060043;
         public static final int msgImpBuy=0x7f060044;
+        public static final int msgImpNote=0x7f060046;
+        public static final int msgImpPwd=0x7f060047;
+        public static final int msgImpRecipe=0x7f060045;
         public static final int msgImpTask=0x7f060042;
         public static final int name=0x7f060029;
         public static final int no_elems=0x7f060013;

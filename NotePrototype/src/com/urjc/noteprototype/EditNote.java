@@ -93,6 +93,8 @@ public class EditNote extends Activity {
 				database.open();
 				database.createNote(title, body);
 				database.close();
+				Toast.makeText(this, R.string.msgImpNote,
+						Toast.LENGTH_SHORT).show();
 				finish();
 				Intent i = new Intent(this, MenuApp.class);
 				startActivity(i);

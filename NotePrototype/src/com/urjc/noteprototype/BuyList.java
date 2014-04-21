@@ -170,7 +170,7 @@ public class BuyList extends ListActivity {
 			fillData();
 			break;
 		case ACTIVITY_EXPORT:
-			//f.delete();
+			f.delete();
 		}
 	}
 

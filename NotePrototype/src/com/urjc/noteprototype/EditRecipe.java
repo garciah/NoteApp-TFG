@@ -1,12 +1,22 @@
 package com.urjc.noteprototype;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -28,6 +38,7 @@ public class EditRecipe extends Activity {
 	private String ingredientsAux;
 	private String instructionsAux;
 	private boolean upd;
+	private boolean impFile;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +54,10 @@ public class EditRecipe extends Activity {
 		route = " ";
 		id = null;
 		upd = false;
+		impFile = false;
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
+			impFile = extras.getBoolean("impFile");
 			titleAux = extras.getString(DatabaseHelper.getKeyTitle());
 			ingredientsAux = extras.getString(DatabaseHelper
 					.getKeyIngredients());
@@ -55,6 +68,38 @@ public class EditRecipe extends Activity {
 			upd = extras.getBoolean("upd");
 			if(route != null){
 				File imgFile = new  File(route);
+				if(impFile){
+					if(imgFile.exists()){
+						String imgName = extras.getString("imgName");
+						String pathAppImgC= getString(R.string.routeImgFilesC);
+						String newRoute = pathAppImgC + imgName;
+						File auxFile = new  File(newRoute);
+						if(!auxFile.exists()){
+							try {
+								File file = new File(Environment.getExternalStorageDirectory(),
+										getString(R.string.routeImgFiles));
+								if (!file.exists()) {
+									if (!file.mkdirs()) {
+										Log.e("TravellerLog :: ", "Problem creating Image folder");
+									}
+								}
+								InputStream in = new FileInputStream(imgFile);
+								OutputStream out = new FileOutputStream(auxFile);
+								byte[] buf = new byte[1024];
+								int len;
+								while ((len = in.read(buf)) > 0) {
+									out.write(buf, 0, len);
+								}
+								in.close();
+								out.close();
+							} catch (FileNotFoundException ex) {
+							} catch (IOException e) {
+							}
+						}
+						imgFile = new  File(newRoute);
+						route = newRoute;
+					}
+				}
 				if(imgFile.exists()){
 				    Bitmap myBitmap = decodeScaledBitmapFromSdCard(route, 250, 250);
 				    image.setImageBitmap(myBitmap);
@@ -69,7 +114,14 @@ public class EditRecipe extends Activity {
 			if (instructionsAux != null) {
 				instructions.setText(instructionsAux);
 			}
-
+			if(impFile){
+				database.open();
+				database.createRecipe(titleAux, ingredientsAux,
+						instructionsAux, route);
+				database.close();
+				Toast.makeText(this, R.string.msgImpRecipe,
+						Toast.LENGTH_SHORT).show();
+			}
 		}
 		
 		final Context c = this;
@@ -161,7 +213,19 @@ public class EditRecipe extends Activity {
 
 	    return inSampleSize;
 	}
-
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+			if(impFile){
+				finish();
+				Intent i = new Intent(this, RecipeList.class);
+				startActivity(i);
+				return true;	
+			}
+		}
+		return super.onKeyDown(keyCode, event);
+	}	
 }
 
 

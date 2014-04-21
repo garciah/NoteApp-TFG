@@ -157,7 +157,7 @@ public class NoteList extends ListActivity {
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if ((keyCode == KeyEvent.KEYCODE_BACK)) {
 			finish();
-			Intent i = new Intent(this, NoteList.class);
+			Intent i = new Intent(this, MenuApp.class);
 			startActivity(i);
 			return true;
 		}

@@ -70,4 +70,7 @@
 	<string name="msgImpTask">Las tareas han sido añadidas a la lista</string>
 	<string name="msgImpAcc">La cuenta ha sido añadida a la lista</string>
 	<string name="msgImpBuy">La lista de la compra ha sido añadida</string>
+	<string name="msgImpRecipe">La receta ha sido añadida a la lista</string>
+	<string name="msgImpNote">La nota ha sido añadida a la lista</string>
+	<string name="msgImpPwd">La contraseña ha sido añadida a la lista</string>
 </resources>

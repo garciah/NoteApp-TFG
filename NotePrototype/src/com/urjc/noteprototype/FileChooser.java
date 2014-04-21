@@ -144,9 +144,8 @@ public class FileChooser extends ListActivity {
 		startActivity(i);
 	}
 
-	private static void copyfile(String srFile, String dtFile) {
+	public static void copyfile(String srFile, String dtFile) {
 		try {
-
 			File file = new File(Environment.getExternalStorageDirectory(),
 					pathAppImg);
 			if (!file.exists()) {

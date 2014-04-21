@@ -106,6 +106,8 @@ public class EditPwd extends Activity {
 				database.open();
 				database.createPwd(titleAux, pwdAux, userAux, urlAux);
 				database.close();
+				Toast.makeText(this, R.string.msgImpPwd,
+						Toast.LENGTH_SHORT).show();
 				finish();
 				Intent i = new Intent(this, PasswordsList.class);
 				startActivity(i);
