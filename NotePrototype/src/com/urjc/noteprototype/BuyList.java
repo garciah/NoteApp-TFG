@@ -121,7 +121,7 @@ public class BuyList extends ListActivity {
 					.getColumnIndexOrThrow(DatabaseHelper.getKeyTitle())));
 			database.close();
 			startActivityForResult(i, ACTIVITY_EDIT);
-		case MENU_OP3:
+		case MENU_OP4:
 			c.moveToPosition(info.position);
 				String ti = c.getString(c.getColumnIndexOrThrow(DatabaseHelper.getKeyTitle()));
 				database.open();
@@ -146,7 +146,7 @@ public class BuyList extends ListActivity {
 				e1.printStackTrace();
 			}
 				return true;
-		case MENU_OP4:
+		case MENU_OP3:
 			c.moveToPosition(info.position);
 			try {
 				String t = c.getString(c.getColumnIndexOrThrow(DatabaseHelper.getKeyTitle()))+"Temp";

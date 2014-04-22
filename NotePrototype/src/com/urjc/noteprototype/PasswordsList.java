@@ -132,7 +132,7 @@ public class PasswordsList extends ListActivity {
 					.getColumnIndexOrThrow(DatabaseHelper.getKeyUrl())));
 			database.close();
 			startActivityForResult(i, ACTIVITY_EDIT);
-		case MENU_OP3:
+		case MENU_OP4:
 			database.open();
 			c = cursor;
 			c.moveToPosition(info.position);
@@ -149,7 +149,7 @@ public class PasswordsList extends ListActivity {
 				e.printStackTrace();
 			}
 			return true;	
-		case MENU_OP4:
+		case MENU_OP3:
 			database.open();
 			c = cursor;
 			c.moveToPosition(info.position);

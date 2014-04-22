@@ -122,7 +122,7 @@ public class RecipeList extends ListActivity {
 					R.string.msgDelRecipe, Toast.LENGTH_SHORT);
 			toast1.show();
 			return true;
-		case MENU_OP2:
+		case MENU_OP3:
 			database.open();
 			c = database.getRecipeForId(info.id);
 			c.moveToFirst();
@@ -141,7 +141,7 @@ public class RecipeList extends ListActivity {
 				e.printStackTrace();
 			}
 			return true;
-		case MENU_OP3:	
+		case MENU_OP2:	
 			database.open();
 			c = database.getRecipeForId(info.id);
 			c.moveToFirst();

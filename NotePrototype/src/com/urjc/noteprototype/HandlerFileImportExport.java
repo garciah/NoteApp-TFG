@@ -47,7 +47,7 @@ public class HandlerFileImportExport {
 		FileOutputStream fos = new FileOutputStream(f);
 		OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
 		BufferedWriter salida = new BufferedWriter(osw);
-		salida.write(COD_NOTE);
+		salida.write(COD_NOTE+"\n");
 		salida.write(title+"\n");
 		salida.write(body+"\n");
 		salida.flush();
@@ -91,7 +91,7 @@ public class HandlerFileImportExport {
 		FileOutputStream fos = new FileOutputStream(f);
 		OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
 		BufferedWriter salida = new BufferedWriter(osw);
-		salida.write(COD_PWD);
+		salida.write(COD_PWD+"\n");
 		salida.write(title+"\n");
 		salida.write(user+"\n");
 		salida.write(pwd+"\n");
@@ -138,7 +138,7 @@ public class HandlerFileImportExport {
 		FileOutputStream fos = new FileOutputStream(f);
 		OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
 		BufferedWriter salida = new BufferedWriter(osw);
-		salida.write(COD_TASK);
+		salida.write(COD_TASK+"\n");
 		salida.write(title+"\n");
 		for(int i=0;i<elems.size();i++){
 			salida.write(elems.get(i).getName()+"\n");
@@ -193,7 +193,7 @@ public class HandlerFileImportExport {
 		FileOutputStream fos = new FileOutputStream(f);
 		OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
 		BufferedWriter salida = new BufferedWriter(osw);
-		salida.write(COD_ACC);
+		salida.write(COD_ACC+"\n");
 		salida.write(title+"\n");
 		for(int i=0;i<elems.size();i++){
 			salida.write(elems.get(i).getTag()+"\n");
@@ -246,7 +246,7 @@ public class HandlerFileImportExport {
 		FileOutputStream fos = new FileOutputStream(f);
 		OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
 		BufferedWriter salida = new BufferedWriter(osw);
-		salida.write(COD_BUY);
+		salida.write(COD_BUY+"\n");
 		salida.write(title+"\n");
 		for(int i=0;i<elems.size();i++){
 			salida.write(elems.get(i).getName()+"\n");
@@ -306,7 +306,7 @@ public class HandlerFileImportExport {
 		FileOutputStream fos = new FileOutputStream(f);
 		OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
 		BufferedWriter salida = new BufferedWriter(osw);
-		salida.write(COD_RECIPE);
+		salida.write(COD_RECIPE+"\n");
 		salida.write(title+"\n");
 		salida.write(ingredients+"\n");
 		salida.write(instructions+"\n");
