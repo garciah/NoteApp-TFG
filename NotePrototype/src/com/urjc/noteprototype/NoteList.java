@@ -22,6 +22,7 @@ public class NoteList extends ListActivity {
 
 	private static final int MENU_OP1 = 1;
 	private static final int MENU_OP2 = 2;
+	private static final int MENU_OP3 = 3;
 	private static final int ACTIVITY_CREATE = 0;
 	private static final int ACTIVITY_EDIT = 1;
 	private static final int ACTIVITY_EXPORT = 2;
@@ -88,29 +89,32 @@ public class NoteList extends ListActivity {
 			ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
 		menu.add(Menu.NONE, MENU_OP1, Menu.NONE, R.string.menuList1);
-		menu.add(Menu.NONE, MENU_OP2, Menu.NONE, R.string.exportFile);
+		menu.add(Menu.NONE, MENU_OP2, Menu.NONE, R.string.shareFile);
+		menu.add(Menu.NONE, MENU_OP3, Menu.NONE, R.string.exportFile);
 	}
 
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
 				.getMenuInfo();
+		Cursor c;
+		String t;
+		String b;
 		switch (item.getItemId()) {
 		case MENU_OP1:
 			database.open();
 			database.deleteNote(info.id);
 			database.close();
 			fillData();
-			Toast toast1 = Toast.makeText(getApplicationContext(),
-					R.string.msgDelete, Toast.LENGTH_SHORT);
-			toast1.show();
+			Toast.makeText(getApplicationContext(),
+					R.string.msgDelete, Toast.LENGTH_SHORT).show();
 			return true;
 		case MENU_OP2:
 			database.open();
-			Cursor c = database.getNoteForId(info.id);
+			c = database.getNoteForId(info.id);
 			c.moveToFirst();
-			String t = c.getString(0);
-			String b = c.getString(1);
+			t = c.getString(0)+"Temp";
+			b = c.getString(1);
 			database.close();
 			try {
 				String file = HandlerFileImportExport.writeFileNote(t, b,
@@ -126,6 +130,21 @@ public class NoteList extends ListActivity {
 					startActivityForResult(Intent.createChooser(shareIntent, "Note"),ACTIVITY_EXPORT);
 				}
 
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return true;
+		case MENU_OP3:	
+			database.open();
+			c = database.getNoteForId(info.id);
+			c.moveToFirst();
+			t = c.getString(0);
+			b = c.getString(1);
+			database.close();
+			try {
+				HandlerFileImportExport.writeFileNote(t, b, getString(R.string.routeExportFile));
+				Toast.makeText(getApplicationContext(),
+						R.string.fileCreateMsg, Toast.LENGTH_SHORT).show();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

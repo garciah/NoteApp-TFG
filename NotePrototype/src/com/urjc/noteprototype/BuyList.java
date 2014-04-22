@@ -26,6 +26,7 @@ public class BuyList extends ListActivity {
 	private static final int MENU_OP1 = 1;
 	private static final int MENU_OP2 = 2;
 	private static final int MENU_OP3 = 3;
+	private static final int MENU_OP4 = 4;
 	private static final int ACTIVITY_CREATE = 0;
 	private static final int ACTIVITY_EDIT = 1;
 	private static final int ACTIVITY_EXPORT = 2;
@@ -90,13 +91,17 @@ public class BuyList extends ListActivity {
 		super.onCreateContextMenu(menu, v, menuInfo);
 		menu.add(Menu.NONE, MENU_OP2, Menu.NONE, R.string.menuList2);
 		menu.add(Menu.NONE, MENU_OP1, Menu.NONE, R.string.menuList1);
-		menu.add(Menu.NONE, MENU_OP3, Menu.NONE, R.string.exportFile);
+		menu.add(Menu.NONE, MENU_OP3, Menu.NONE, R.string.shareFile);
+		menu.add(Menu.NONE, MENU_OP4, Menu.NONE, R.string.exportFile);
 	}
 
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
 				.getMenuInfo();
+		Cursor c = cursor;
+		String file;
+		List<ElemBuyList> items;
 		switch (item.getItemId()) {
 		case MENU_OP1:
 			database.open();
@@ -109,7 +114,6 @@ public class BuyList extends ListActivity {
 			return true;
 		case MENU_OP2:
 			database.open();
-			Cursor c = cursor;
 			c.moveToPosition(info.position);
 			Intent i = new Intent(this, EditBuy.class);
 			i.putExtra(DatabaseHelper.getKeyIdbuy(), info.id);
@@ -118,13 +122,11 @@ public class BuyList extends ListActivity {
 			database.close();
 			startActivityForResult(i, ACTIVITY_EDIT);
 		case MENU_OP3:
-			c = cursor;
 			c.moveToPosition(info.position);
-			try {
-				String t = c.getString(c.getColumnIndexOrThrow(DatabaseHelper.getKeyTitle()));
+				String ti = c.getString(c.getColumnIndexOrThrow(DatabaseHelper.getKeyTitle()));
 				database.open();
 				Cursor cursor = database.getCursorElements(info.id);
-				List<ElemBuyList> items = new ArrayList<ElemBuyList>();
+				items = new ArrayList<ElemBuyList>();
 				if (cursor.moveToFirst()) {
 					do {
 						long id = cursor.getLong(0);
@@ -136,7 +138,33 @@ public class BuyList extends ListActivity {
 					} while (cursor.moveToNext());
 				}
 				database.close();
-				String file = HandlerFileImportExport.writeFileShopping(t, items, getString(R.string.routeExportFile));
+			try {
+				HandlerFileImportExport.writeFileShopping(ti, items, getString(R.string.routeExportFile));
+				Toast.makeText(getApplicationContext(),
+						R.string.fileCreateMsg, Toast.LENGTH_SHORT).show();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+				return true;
+		case MENU_OP4:
+			c.moveToPosition(info.position);
+			try {
+				String t = c.getString(c.getColumnIndexOrThrow(DatabaseHelper.getKeyTitle()))+"Temp";
+				database.open();
+				cursor = database.getCursorElements(info.id);
+				items = new ArrayList<ElemBuyList>();
+				if (cursor.moveToFirst()) {
+					do {
+						long id = cursor.getLong(0);
+						String n = cursor.getString(1);
+						int a = cursor.getInt(2);
+						int ch = cursor.getInt(3);
+						ElemBuyList elem = new ElemBuyList(id, n, ch, a, info.id);
+						items.add(elem);
+					} while (cursor.moveToNext());
+				}
+				database.close();
+				file = HandlerFileImportExport.writeFileShopping(t, items, getString(R.string.routeExportFile));
 				if (file != "") {
 					f = new File(file);
 					Uri path = Uri.fromFile(f);

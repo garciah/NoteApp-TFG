@@ -37,7 +37,7 @@ public class FileChooser extends ListActivity {
 		super.onCreate(savedInstanceState);
 		currentDir = new File(getString(R.string.sdcardRoute));
 		pathAppImg = getString(R.string.routeImgFiles);
-		pathAppImgC= getString(R.string.routeImgFilesC);
+		pathAppImgC = getString(R.string.routeImgFilesC);
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			title = extras.getString(DatabaseHelper.getKeyTitle());
@@ -119,7 +119,7 @@ public class FileChooser extends ListActivity {
 			i.putExtra(DatabaseHelper.getKeyIngredients(), ingredients);
 			i.putExtra(DatabaseHelper.getKeyInstructions(), instructions);
 			i.putExtra(DatabaseHelper.getKeyRoute(), route);
-			i.putExtra("upd",upd);
+			i.putExtra("upd", upd);
 			startActivity(i);
 			return true;
 		}
@@ -129,7 +129,7 @@ public class FileChooser extends ListActivity {
 	private void onFileClick(Option o) {
 		String newRoute = pathAppImgC + o.getName();
 		copyfile(o.getPath(), newRoute);
-		if(!route.equals(newRoute)){
+		if (!route.equals(newRoute)) {
 			File file = new File(route);
 			file.delete();
 		}
@@ -140,7 +140,7 @@ public class FileChooser extends ListActivity {
 		i.putExtra(DatabaseHelper.getKeyIngredients(), ingredients);
 		i.putExtra(DatabaseHelper.getKeyInstructions(), instructions);
 		i.putExtra(DatabaseHelper.getKeyRoute(), newRoute);
-		i.putExtra("upd",upd);
+		i.putExtra("upd", upd);
 		startActivity(i);
 	}
 
@@ -153,19 +153,23 @@ public class FileChooser extends ListActivity {
 					Log.e("TravellerLog :: ", "Problem creating Image folder");
 				}
 			}
-			File f1 = new File(srFile);
-			File f2 = new File(dtFile);
-			InputStream in = new FileInputStream(f1);
-			OutputStream out = new FileOutputStream(f2);
-			byte[] buf = new byte[1024];
-			int len;
-			while ((len = in.read(buf)) > 0) {
-				out.write(buf, 0, len);
+			if (!srFile.equals(dtFile)) {
+				File f1 = new File(srFile);
+				File f2 = new File(dtFile);
+				InputStream in = new FileInputStream(f1);
+				OutputStream out = new FileOutputStream(f2);
+				byte[] buf = new byte[1024];
+				int len;
+				while ((len = in.read(buf)) > 0) {
+					out.write(buf, 0, len);
+				}
+				in.close();
+				out.close();
 			}
-			in.close();
-			out.close();
 		} catch (FileNotFoundException ex) {
+			ex.printStackTrace();
 		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }

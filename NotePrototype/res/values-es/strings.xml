@@ -62,15 +62,18 @@
 	<string name="Tag">"Etiqueta (*): "</string>
 	<string name="sdcardRoute">/sdcard/</string>
 	<string name="routeImgFiles">/NoteForHome/RecipeImg/</string>
-	<string name="routeImgFilesC">sdcard//NoteForHome/RecipeImg/</string>
+	<string name="routeImgFilesC">/sdcard/NoteForHome/RecipeImg/</string>
+	<string name="shareFile">Compartir fichero</string>
 	<string name="exportFile">Exportar fichero</string>
 	<string name="routeExportFile">/NoteForHome/ExportFile/</string>
 	<string name="openFile">IMPORTAR ARCHIVO EXTERNO</string>
 	<string name="share">Compartir</string>
+	<string name="export">Exportar</string>
 	<string name="msgImpTask">Las tareas han sido añadidas a la lista</string>
 	<string name="msgImpAcc">La cuenta ha sido añadida a la lista</string>
 	<string name="msgImpBuy">La lista de la compra ha sido añadida</string>
 	<string name="msgImpRecipe">La receta ha sido añadida a la lista</string>
 	<string name="msgImpNote">La nota ha sido añadida a la lista</string>
 	<string name="msgImpPwd">La contraseña ha sido añadida a la lista</string>
+	<string name="fileCreateMsg">Fichero creado en carpeta ExportFile </string>
 </resources>

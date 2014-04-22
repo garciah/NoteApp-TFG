@@ -62,15 +62,18 @@
 	<string name="Tag">"Tag (*): "</string>
 	<string name="sdcardRoute">/sdcard/</string>
 	<string name="routeImgFiles">/NoteForHome/RecipeImg/</string>
-	<string name="routeImgFilesC">sdcard//NoteForHome/RecipeImg/</string>
+	<string name="routeImgFilesC">/sdcard/NoteForHome/RecipeImg/</string>
+	<string name="shareFile">Share file</string>
 	<string name="exportFile">Export to file</string>
 	<string name="routeExportFile">/NoteForHome/ExportFile/</string>
 	<string name="openFile">IMPORT EXTERNAL FILE</string>
 	<string name="share">Share</string>
+	<string name="export">Export</string>
 	<string name="msgImpTask">tasks were added to the list</string>
 	<string name="msgImpAcc">account were added to the list</string>
 	<string name="msgImpBuy">shopping list were added</string>
 	<string name="msgImpRecipe">recipe were added to the list</string>
 	<string name="msgImpNote">note were added to the list</string>
 	<string name="msgImpPwd">password were added to the list</string>
+	<string name="fileCreateMsg">File created in folder ExportFile </string>
 </resources>

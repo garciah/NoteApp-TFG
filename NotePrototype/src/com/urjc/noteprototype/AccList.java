@@ -26,6 +26,7 @@ public class AccList extends ListActivity {
 	private static final int MENU_OP1 = 1;
 	private static final int MENU_OP2 = 2;
 	private static final int MENU_OP3 = 3;
+	private static final int MENU_OP4 = 4;
 	private static final int ACTIVITY_CREATE = 0;
 	private static final int ACTIVITY_EDIT = 1;
 	private static final int ACTIVITY_EXPORT = 2;
@@ -46,7 +47,7 @@ public class AccList extends ListActivity {
 	private void fillData() {
 		cursor = database.getCursorAllAccs();
 		String[] from = new String[] { DatabaseHelper.getKeyTitle() };
-		int[] to = new int[] { R.id.titleAcc};
+		int[] to = new int[] { R.id.titleAcc };
 		SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
 				R.layout.row_acc_list, cursor, from, to, 0);
 		setListAdapter(adapter);
@@ -88,7 +89,8 @@ public class AccList extends ListActivity {
 		super.onCreateContextMenu(menu, v, menuInfo);
 		menu.add(Menu.NONE, MENU_OP2, Menu.NONE, R.string.menuList2);
 		menu.add(Menu.NONE, MENU_OP1, Menu.NONE, R.string.menuList1);
-		menu.add(Menu.NONE, MENU_OP3, Menu.NONE, R.string.exportFile);
+		menu.add(Menu.NONE, MENU_OP3, Menu.NONE, R.string.shareFile);
+		menu.add(Menu.NONE, MENU_OP4, Menu.NONE, R.string.exportFile);
 	}
 
 	@Override
@@ -96,6 +98,8 @@ public class AccList extends ListActivity {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
 				.getMenuInfo();
 		Cursor c;
+		String t;
+		List<AccountElem> items;
 		switch (item.getItemId()) {
 		case MENU_OP1:
 			database.deleteAccount(info.id);
@@ -113,39 +117,73 @@ public class AccList extends ListActivity {
 					.getColumnIndexOrThrow(DatabaseHelper.getKeyTitle())));
 			startActivityForResult(i, ACTIVITY_EDIT);
 		case MENU_OP3:
-				c = cursor;
-				c.moveToPosition(info.position);
-				try {
-					String t = c.getString(c.getColumnIndexOrThrow(DatabaseHelper.getKeyTitle()));
-					database.open();
-					Cursor cursor = database.getCursorElements(info.id);
-					List<AccountElem> items = new ArrayList<AccountElem>();
-					if (cursor.moveToFirst()) {
-						do {
-							long id = cursor.getLong(0);
-							String tag = cursor.getString(1);
-							float num = cursor.getFloat(2);
-							AccountElem elem = new AccountElem(id, tag, num, info.id);
-							items.add(elem);
-						} while (cursor.moveToNext());
-					}
-					database.close();
-					String file = HandlerFileImportExport.writeFileAcc(t, items, getString(R.string.routeExportFile));
-					if (file != "") {
-						f = new File(file);
-						Uri path = Uri.fromFile(f);
-						Intent shareIntent = new Intent();
-						shareIntent.setAction(Intent.ACTION_SEND);
-						shareIntent.putExtra(Intent.EXTRA_TEXT, "Sharing File NoteForHome");
-						shareIntent.putExtra(Intent.EXTRA_STREAM, path);
-						shareIntent.setType("application/octet-stream");
-						startActivityForResult(Intent.createChooser(shareIntent, "Account"),ACTIVITY_EXPORT);
-					}
+			c = cursor;
+			c.moveToPosition(info.position);
 
-				} catch (IOException e) {
-					e.printStackTrace();
+			t = c.getString(c.getColumnIndexOrThrow(DatabaseHelper
+					.getKeyTitle()));
+			database.open();
+			cursor = database.getCursorElements(info.id);
+			items = new ArrayList<AccountElem>();
+			if (cursor.moveToFirst()) {
+				do {
+					long id = cursor.getLong(0);
+					String tag = cursor.getString(1);
+					float num = cursor.getFloat(2);
+					AccountElem elem = new AccountElem(id, tag, num, info.id);
+					items.add(elem);
+				} while (cursor.moveToNext());
+			}
+			try {
+				database.close();
+				HandlerFileImportExport.writeFileAcc(t, items,
+						getString(R.string.routeExportFile));
+				Toast.makeText(getApplicationContext(),
+						R.string.fileCreateMsg, Toast.LENGTH_SHORT).show();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return true;
+		case MENU_OP4:
+			c = cursor;
+			c.moveToPosition(info.position);
+			try {
+				t = c.getString(c.getColumnIndexOrThrow(DatabaseHelper
+						.getKeyTitle()))+"Temp";
+				database.open();
+				cursor = database.getCursorElements(info.id);
+				items = new ArrayList<AccountElem>();
+				if (cursor.moveToFirst()) {
+					do {
+						long id = cursor.getLong(0);
+						String tag = cursor.getString(1);
+						float num = cursor.getFloat(2);
+						AccountElem elem = new AccountElem(id, tag, num,
+								info.id);
+						items.add(elem);
+					} while (cursor.moveToNext());
 				}
-				return true;	
+				database.close();
+				String file = HandlerFileImportExport.writeFileAcc(t, items,
+						getString(R.string.routeExportFile));
+				if (file != "") {
+					f = new File(file);
+					Uri path = Uri.fromFile(f);
+					Intent shareIntent = new Intent();
+					shareIntent.setAction(Intent.ACTION_SEND);
+					shareIntent.putExtra(Intent.EXTRA_TEXT,
+							"Sharing File NoteForHome");
+					shareIntent.putExtra(Intent.EXTRA_STREAM, path);
+					shareIntent.setType("application/octet-stream");
+					startActivityForResult(
+							Intent.createChooser(shareIntent, "Account"),
+							ACTIVITY_EXPORT);
+				}
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return true;
 		default:
 			return super.onContextItemSelected(item);
 		}
@@ -164,7 +202,7 @@ public class AccList extends ListActivity {
 			fillData();
 			break;
 		case ACTIVITY_EXPORT:
-			f.delete();	
+			f.delete();
 		}
 	}
 

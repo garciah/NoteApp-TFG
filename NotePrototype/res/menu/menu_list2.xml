@@ -7,4 +7,8 @@
         android:icon="@drawable/share"
         android:title="@string/share"
         android:showAsAction="ifRoom"/>
+    <item android:id = "@+id/menu_export"
+        android:icon="@drawable/export"
+        android:title="@string/export"
+        android:showAsAction="ifRoom"/>
 </menu>

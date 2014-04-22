@@ -24,6 +24,7 @@ public class PasswordsList extends ListActivity {
 	private static final int MENU_OP1 = 1;
 	private static final int MENU_OP2 = 2;
 	private static final int MENU_OP3 = 3;
+	private static final int MENU_OP4 = 4;
 	private static final int ACTIVITY_CREATE = 0;
 	private static final int ACTIVITY_EDIT = 1;
 	private static final int ACTIVITY_EXPORT = 2;
@@ -95,7 +96,8 @@ public class PasswordsList extends ListActivity {
 		super.onCreateContextMenu(menu, v, menuInfo);
 		menu.add(Menu.NONE, MENU_OP2, Menu.NONE, R.string.menuList2);
 		menu.add(Menu.NONE, MENU_OP1, Menu.NONE, R.string.menuList1);
-		menu.add(Menu.NONE, MENU_OP3, Menu.NONE, R.string.exportFile);
+		menu.add(Menu.NONE, MENU_OP3, Menu.NONE, R.string.shareFile);
+		menu.add(Menu.NONE, MENU_OP4, Menu.NONE, R.string.exportFile);
 	}
 
 	@Override
@@ -103,6 +105,7 @@ public class PasswordsList extends ListActivity {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
 				.getMenuInfo();
 		Cursor c;
+		String t,u,p,ur;
 		switch (item.getItemId()) {
 		case MENU_OP1:
 			database.open();
@@ -133,10 +136,27 @@ public class PasswordsList extends ListActivity {
 			database.open();
 			c = cursor;
 			c.moveToPosition(info.position);
-			String t = c.getString(c.getColumnIndexOrThrow(DatabaseHelper.getKeyTitle()));
-			String u = c.getString(c.getColumnIndexOrThrow(DatabaseHelper.getKeyUser()));
-			String p =c.getString(c.getColumnIndexOrThrow(DatabaseHelper.getKeyPwd()));
-			String ur = c.getString(c.getColumnIndexOrThrow(DatabaseHelper.getKeyUrl()));
+			t = c.getString(c.getColumnIndexOrThrow(DatabaseHelper.getKeyTitle()));
+			u = c.getString(c.getColumnIndexOrThrow(DatabaseHelper.getKeyUser()));
+			p =c.getString(c.getColumnIndexOrThrow(DatabaseHelper.getKeyPwd()));
+			ur = c.getString(c.getColumnIndexOrThrow(DatabaseHelper.getKeyUrl()));
+			database.close();
+			try {
+				HandlerFileImportExport.writeFilePwd(t, u, p, ur, getString(R.string.routeExportFile));
+				Toast.makeText(getApplicationContext(),
+						R.string.fileCreateMsg, Toast.LENGTH_SHORT).show();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return true;	
+		case MENU_OP4:
+			database.open();
+			c = cursor;
+			c.moveToPosition(info.position);
+			t = c.getString(c.getColumnIndexOrThrow(DatabaseHelper.getKeyTitle()))+"Temp";
+			u = c.getString(c.getColumnIndexOrThrow(DatabaseHelper.getKeyUser()));
+			p =c.getString(c.getColumnIndexOrThrow(DatabaseHelper.getKeyPwd()));
+			ur = c.getString(c.getColumnIndexOrThrow(DatabaseHelper.getKeyUrl()));
 			database.close();
 			try {
 				String file = HandlerFileImportExport.writeFilePwd(t, u, p, ur, getString(R.string.routeExportFile));
@@ -173,7 +193,7 @@ public class PasswordsList extends ListActivity {
 			fillData();
 			break;
 		case ACTIVITY_EXPORT:
-			//f.delete();
+			f.delete();
 			break;
 		}	
 	}

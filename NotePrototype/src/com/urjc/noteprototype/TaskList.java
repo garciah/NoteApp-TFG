@@ -88,7 +88,7 @@ public class TaskList extends ListActivity {
 			return true;
 		case R.id.menu_share:
 			try {
-				String file = HandlerFileImportExport.writeFileTask("list",
+				String file = HandlerFileImportExport.writeFileTask("listTemp",
 						items, getString(R.string.routeExportFile));
 				if (file != "") {
 					f = new File(file);
@@ -103,6 +103,16 @@ public class TaskList extends ListActivity {
 							Intent.createChooser(shareIntent, "Tasks"),
 							ACTIVITY_EXPORT);
 				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return true;
+		case R.id.menu_export:
+			try {
+				HandlerFileImportExport.writeFileTask("listTemp",
+						items, getString(R.string.routeExportFile));
+				Toast.makeText(getApplicationContext(),
+						R.string.fileCreateMsg, Toast.LENGTH_SHORT).show();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

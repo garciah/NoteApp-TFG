@@ -73,28 +73,33 @@ public class EditRecipe extends Activity {
 						String imgName = extras.getString("imgName");
 						String pathAppImgC= getString(R.string.routeImgFilesC);
 						String newRoute = pathAppImgC + imgName;
-						File auxFile = new  File(newRoute);
-						if(!auxFile.exists()){
-							try {
-								File file = new File(Environment.getExternalStorageDirectory(),
-										getString(R.string.routeImgFiles));
-								if (!file.exists()) {
-									if (!file.mkdirs()) {
-										Log.e("TravellerLog :: ", "Problem creating Image folder");
+						if(!imgFile.getPath().equals(newRoute)){
+							File auxFile = new  File(newRoute);
+							if(auxFile.exists()){
+								try {
+									File file = new File(Environment.getExternalStorageDirectory(),
+											getString(R.string.routeImgFiles));
+									if (!file.exists()) {
+										if (!file.mkdirs()) {
+											Log.e("TravellerLog :: ", "Problem creating Image folder");
+										}
 									}
+									InputStream in = new FileInputStream(imgFile);
+									OutputStream out = new FileOutputStream(auxFile);
+									byte[] buf = new byte[1024];
+									int len;
+									while ((len = in.read(buf)) > 0) {
+										out.write(buf, 0, len);
+									}
+									in.close();
+									out.close();
+								} catch (FileNotFoundException ex) {
+									ex.printStackTrace();
+								} catch (IOException e) {
+									e.printStackTrace();
 								}
-								InputStream in = new FileInputStream(imgFile);
-								OutputStream out = new FileOutputStream(auxFile);
-								byte[] buf = new byte[1024];
-								int len;
-								while ((len = in.read(buf)) > 0) {
-									out.write(buf, 0, len);
-								}
-								in.close();
-								out.close();
-							} catch (FileNotFoundException ex) {
-							} catch (IOException e) {
 							}
+							
 						}
 						imgFile = new  File(newRoute);
 						route = newRoute;
