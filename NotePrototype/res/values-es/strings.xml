@@ -66,6 +66,7 @@
 	<string name="shareFile">Compartir fichero</string>
 	<string name="exportFile">Exportar fichero</string>
 	<string name="routeExportFile">/NoteForHome/ExportFile/</string>
+	<string name="routeSharingFile">/NoteForHome/ExportFile/Temp/</string>
 	<string name="openFile">IMPORTAR ARCHIVO EXTERNO</string>
 	<string name="share">Compartir</string>
 	<string name="export">Exportar</string>
@@ -76,4 +77,5 @@
 	<string name="msgImpNote">La nota ha sido añadida a la lista</string>
 	<string name="msgImpPwd">La contraseña ha sido añadida a la lista</string>
 	<string name="fileCreateMsg">Fichero creado en carpeta ExportFile </string>
+	<string name="errFormat">Error de formato en el fichero de entrada</string>
 </resources>

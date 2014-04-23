@@ -122,25 +122,6 @@ public class RecipeList extends ListActivity {
 					R.string.msgDelRecipe, Toast.LENGTH_SHORT);
 			toast1.show();
 			return true;
-		case MENU_OP3:
-			database.open();
-			c = database.getRecipeForId(info.id);
-			c.moveToFirst();
-			t = c.getString(1)+"Temp";
-			ing =c.getString(2); 
-			inst =c.getString(3);
-			pimg = c.getString(4);
-			aux = pimg.split("/");
-			nimg = aux[aux.length-1];
-			database.close();
-			try {
-				HandlerFileImportExport.writeFileRecipe(t, ing, inst,nimg ,getString(R.string.routeExportFile));
-				Toast.makeText(getApplicationContext(),
-						R.string.fileCreateMsg, Toast.LENGTH_SHORT).show();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			return true;
 		case MENU_OP2:	
 			database.open();
 			c = database.getRecipeForId(info.id);
@@ -153,7 +134,7 @@ public class RecipeList extends ListActivity {
 			nimg = aux[aux.length-1];
 			database.close();
 			try {
-				String fi = HandlerFileImportExport.writeFileRecipe(t, ing, inst,nimg ,getString(R.string.routeExportFile));
+				String fi = HandlerFileImportExport.writeFileRecipe(t, ing, inst,nimg ,getString(R.string.routeSharingFile));
 				if (fi != "") {
 					f = new File(fi);
 					File imgFile = new  File(pimg);
@@ -170,6 +151,25 @@ public class RecipeList extends ListActivity {
 					startActivityForResult(Intent.createChooser(shareIntent, "Recipe"),ACTIVITY_EXPORT);
 				}
 
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return true;	
+		case MENU_OP3:
+			database.open();
+			c = database.getRecipeForId(info.id);
+			c.moveToFirst();
+			t = c.getString(1);
+			ing =c.getString(2); 
+			inst =c.getString(3);
+			pimg = c.getString(4);
+			aux = pimg.split("/");
+			nimg = aux[aux.length-1];
+			database.close();
+			try {
+				HandlerFileImportExport.writeFileRecipe(t, ing, inst,nimg ,getString(R.string.routeExportFile));
+				Toast.makeText(getApplicationContext(),
+						R.string.fileCreateMsg, Toast.LENGTH_SHORT).show();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

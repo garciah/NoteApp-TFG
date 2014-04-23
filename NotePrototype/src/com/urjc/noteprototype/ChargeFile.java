@@ -110,7 +110,10 @@ public class ChargeFile extends Activity {
 				}
 				break;
 			default:
-				Toast.makeText(this, "Error File ", Toast.LENGTH_SHORT).show();
+				Toast.makeText(this,R.string.errFormat, Toast.LENGTH_SHORT).show();
+				i = new Intent(this, MenuApp.class);
+				startActivity(i);
+				finish();
 				break;
 			}
 		}

@@ -88,8 +88,8 @@ public class TaskList extends ListActivity {
 			return true;
 		case R.id.menu_share:
 			try {
-				String file = HandlerFileImportExport.writeFileTask("listTemp",
-						items, getString(R.string.routeExportFile));
+				String file = HandlerFileImportExport.writeFileTask("list",
+						items, getString(R.string.routeSharingFile));
 				if (file != "") {
 					f = new File(file);
 					Uri path = Uri.fromFile(f);
@@ -109,7 +109,7 @@ public class TaskList extends ListActivity {
 			return true;
 		case R.id.menu_export:
 			try {
-				HandlerFileImportExport.writeFileTask("listTemp",
+				HandlerFileImportExport.writeFileTask("list",
 						items, getString(R.string.routeExportFile));
 				Toast.makeText(getApplicationContext(),
 						R.string.fileCreateMsg, Toast.LENGTH_SHORT).show();

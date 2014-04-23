@@ -89,8 +89,8 @@ public class AccList extends ListActivity {
 		super.onCreateContextMenu(menu, v, menuInfo);
 		menu.add(Menu.NONE, MENU_OP2, Menu.NONE, R.string.menuList2);
 		menu.add(Menu.NONE, MENU_OP1, Menu.NONE, R.string.menuList1);
-		menu.add(Menu.NONE, MENU_OP3, Menu.NONE, R.string.shareFile);
-		menu.add(Menu.NONE, MENU_OP4, Menu.NONE, R.string.exportFile);
+		menu.add(Menu.NONE, MENU_OP4, Menu.NONE, R.string.shareFile);
+		menu.add(Menu.NONE, MENU_OP3, Menu.NONE, R.string.exportFile);
 	}
 
 	@Override
@@ -149,7 +149,7 @@ public class AccList extends ListActivity {
 			c.moveToPosition(info.position);
 			try {
 				t = c.getString(c.getColumnIndexOrThrow(DatabaseHelper
-						.getKeyTitle()))+"Temp";
+						.getKeyTitle()));
 				database.open();
 				cursor = database.getCursorElements(info.id);
 				items = new ArrayList<AccountElem>();
@@ -165,7 +165,7 @@ public class AccList extends ListActivity {
 				}
 				database.close();
 				String file = HandlerFileImportExport.writeFileAcc(t, items,
-						getString(R.string.routeExportFile));
+						getString(R.string.routeSharingFile));
 				if (file != "") {
 					f = new File(file);
 					Uri path = Uri.fromFile(f);

@@ -113,12 +113,12 @@ public class NoteList extends ListActivity {
 			database.open();
 			c = database.getNoteForId(info.id);
 			c.moveToFirst();
-			t = c.getString(0)+"Temp";
+			t = c.getString(0);
 			b = c.getString(1);
 			database.close();
 			try {
 				String file = HandlerFileImportExport.writeFileNote(t, b,
-						getString(R.string.routeExportFile));
+						getString(R.string.routeSharingFile));
 				if (file != "") {
 					f = new File(file);
 					Uri path = Uri.fromFile(f);

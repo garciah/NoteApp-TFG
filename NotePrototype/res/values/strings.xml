@@ -66,6 +66,7 @@
 	<string name="shareFile">Share file</string>
 	<string name="exportFile">Export to file</string>
 	<string name="routeExportFile">/NoteForHome/ExportFile/</string>
+	<string name="routeSharingFile">/NoteForHome/ExportFile/Temp/</string>
 	<string name="openFile">IMPORT EXTERNAL FILE</string>
 	<string name="share">Share</string>
 	<string name="export">Export</string>
@@ -76,4 +77,5 @@
 	<string name="msgImpNote">note were added to the list</string>
 	<string name="msgImpPwd">password were added to the list</string>
 	<string name="fileCreateMsg">File created in folder ExportFile </string>
+	<string name="errFormat">Error format in input File</string>
 </resources>
