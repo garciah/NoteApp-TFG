@@ -51,7 +51,7 @@ public class BuyElemList extends ListActivity {
 					}
 					database.close();
 					Toast.makeText(this, R.string.msgImpBuy,
-							Toast.LENGTH_SHORT).show();
+							Toast.LENGTH_LONG).show();
 				} catch (IOException e) {
 					e.printStackTrace();
 					Toast.makeText(this, "Error File", Toast.LENGTH_SHORT)

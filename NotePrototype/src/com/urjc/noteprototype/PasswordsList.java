@@ -132,6 +132,7 @@ public class PasswordsList extends ListActivity {
 					.getColumnIndexOrThrow(DatabaseHelper.getKeyUrl())));
 			database.close();
 			startActivityForResult(i, ACTIVITY_EDIT);
+			return true;
 		case MENU_OP3:
 			database.open();
 			c = cursor;

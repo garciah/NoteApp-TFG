@@ -17,7 +17,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="InitWindows"
+            android:name="com.urjc.noteprototype.InitWindows"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
             <intent-filter>
@@ -27,97 +27,98 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="MenuApp"
+            android:name="com.urjc.noteprototype.MenuApp"
             android:label="@string/menu" >
         </activity>
         <activity
-            android:name="EditNote"
+            android:name="com.urjc.noteprototype.EditNote"
             android:label="@string/butMenu1" >
         </activity>
         <activity
-            android:name="EditPwd"
+            android:name="com.urjc.noteprototype.EditPwd"
             android:label="@string/butMenu2" >
         </activity>
         <activity
-            android:name="ViewPwd"
+            android:name="com.urjc.noteprototype.ViewPwd"
             android:label="@string/butMenu2" >
         </activity>
         <activity
-            android:name="NoteList"
+            android:name="com.urjc.noteprototype.NoteList"
             android:label="@string/butMenu1" >
         </activity>
         <activity
-            android:name="PasswordsList"
+            android:name="com.urjc.noteprototype.PasswordsList"
             android:label="@string/butMenu2" >
         </activity>
         <activity
-            android:name="BuyList"
+            android:name="com.urjc.noteprototype.BuyList"
             android:label="@string/shopList" >
         </activity>
         <activity
-            android:name="EditBuy"
+            android:name="com.urjc.noteprototype.EditBuy"
             android:label="@string/shopList" >
         </activity>
         <activity
-            android:name="BuyElemList"
+            android:name="com.urjc.noteprototype.BuyElemList"
             android:label="@string/elemList" >
         </activity>
         <activity
-            android:name="TaskList"
+            android:name="com.urjc.noteprototype.TaskList"
             android:label="@string/tasks" >
         </activity>
         <activity
-            android:name="EditTask"
+            android:name="com.urjc.noteprototype.EditTask"
             android:label="@string/task"
             android:theme="@android:style/Theme.Dialog" >
         </activity>
         <activity
-            android:name="EditElement"
+            android:name="com.urjc.noteprototype.EditElement"
             android:label="@string/elemList"
             android:theme="@android:style/Theme.Dialog" >
         </activity>
         <activity
-            android:name="RecipeList"
+            android:name="com.urjc.noteprototype.RecipeList"
             android:label="@string/recipes" >
         </activity>
         <activity
-            android:name="FileChooser"
+            android:name="com.urjc.noteprototype.FileChooser"
             android:label="@string/recipes" >
         </activity>
         <activity
-            android:name="EditRecipe"
+            android:name="com.urjc.noteprototype.EditRecipe"
             android:label="@string/recipes" >
         </activity>
         <activity
-            android:name="AccList"
+            android:name="com.urjc.noteprototype.AccList"
             android:label="@string/accounts" >
         </activity>
         <activity
-            android:name="EditAcc"
+            android:name="com.urjc.noteprototype.EditAcc"
             android:label="@string/accounts" >
         </activity>
         <activity
-            android:name="TableAccount"
+            android:name="com.urjc.noteprototype.TableAccount"
             android:label="@string/accounts" >
         </activity>
         <activity
-            android:name="AccElemList"
+            android:name="com.urjc.noteprototype.AccElemList"
             android:label="@string/accounts" >
         </activity>
         <activity
-            android:name="EditElementAcc"
+            android:name="com.urjc.noteprototype.EditElementAcc"
             android:label="@string/accounts" >
         </activity>
         <activity
-            android:name="AboutApp"
+            android:name="com.urjc.noteprototype.AboutApp"
             android:label="@string/about_tit"
             android:theme="@android:style/Theme.Dialog" >
         </activity>
         <activity
-            android:name="ChargeFile"
+            android:name="com.urjc.noteprototype.ChargeFile"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
@@ -129,26 +130,36 @@
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:mimeType="application/nfh" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:mimeType="application/octet-stream" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
         <activity
-            android:name="FileInputChooser"
+            android:name="com.urjc.noteprototype.FileInputChooser"
             android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.urjc.noteprototype.HelpActivity"
+            android:label="@string/menu_help" >
         </activity>
     </application>
 

@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
-
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;

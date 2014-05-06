@@ -121,6 +121,7 @@ public class BuyList extends ListActivity {
 					.getColumnIndexOrThrow(DatabaseHelper.getKeyTitle())));
 			database.close();
 			startActivityForResult(i, ACTIVITY_EDIT);
+			return true;
 		case MENU_OP3:
 			c.moveToPosition(info.position);
 			try {

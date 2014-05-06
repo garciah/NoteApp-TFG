@@ -17,7 +17,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -125,7 +124,7 @@ public class EditRecipe extends Activity {
 						instructionsAux, route);
 				database.close();
 				Toast.makeText(this, R.string.msgImpRecipe,
-						Toast.LENGTH_SHORT).show();
+						Toast.LENGTH_LONG).show();
 			}
 		}
 		
@@ -172,13 +171,6 @@ public class EditRecipe extends Activity {
 				}
 			}
 		});
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
 	}
 	
 	public static Bitmap decodeScaledBitmapFromSdCard(String filePath,

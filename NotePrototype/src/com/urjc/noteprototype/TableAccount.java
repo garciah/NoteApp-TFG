@@ -11,7 +11,6 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TableLayout;
@@ -63,7 +62,7 @@ public class TableAccount extends Activity {
 					}	
 					database.close();
 					Toast.makeText(this, R.string.msgImpAcc,
-							Toast.LENGTH_SHORT).show();
+							Toast.LENGTH_LONG).show();
 				} catch (IOException e) {
 					e.printStackTrace();
 					Toast.makeText(this, "Error File", Toast.LENGTH_SHORT)
@@ -162,13 +161,6 @@ public class TableAccount extends Activity {
 		t.setTypeface(Typeface.DEFAULT_BOLD);
 		t.setPadding(10, 5, 10, 5);
 		t.setBackgroundColor(getResources().getColor(R.color.Yellow));
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
 	}
 
 	@Override

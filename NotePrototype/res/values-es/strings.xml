@@ -3,7 +3,7 @@
 
     <string name="app_name">Note For Home</string>
     <string name="action_settings">Configuración</string>
-    <string name="about">Aplicación de notas para el TFG</string>
+    <string name="about">Aplicación de notas para el TFG\n\nCreada por Pablo Garcia\n\nV1.0 [2013/2014]</string>
     <string name="about_tit">Acerca de esta APP</string>
     <string name="descInitImg">NOTAS</string>
     <string name="titleNote">Título (*):</string>
@@ -70,12 +70,28 @@
 	<string name="openFile">IMPORTAR ARCHIVO EXTERNO</string>
 	<string name="share">Compartir</string>
 	<string name="export">Exportar</string>
-	<string name="msgImpTask">Las tareas han sido añadidas a la lista</string>
-	<string name="msgImpAcc">La cuenta ha sido añadida a la lista</string>
-	<string name="msgImpBuy">La lista de la compra ha sido añadida</string>
-	<string name="msgImpRecipe">La receta ha sido añadida a la lista</string>
-	<string name="msgImpNote">La nota ha sido añadida a la lista</string>
-	<string name="msgImpPwd">La contraseña ha sido añadida a la lista</string>
+	<string name="msgImpTask">El elemento exportado no ha sido modificado. Las tareas han sido añadidas a la lista en el formato original.</string>
+	<string name="msgImpAcc">El elemento exportado no ha sido modificado. La cuenta ha sido añadida a la lista en el formato original.</string>
+	<string name="msgImpBuy">El elemento exportado no ha sido modificado. La lista de la compra ha sido añadida en el formato original.</string>
+	<string name="msgImpRecipe">El elemento exportado no ha sido modificado. La receta ha sido añadida a la lista en el formato original.</string>
+	<string name="msgImpNote">El elemento exportado no ha sido modificado. La nota ha sido añadida a la lista en el formato original.</string>
+	<string name="msgImpPwd">El elemento exportado no ha sido modificado. La contraseña ha sido añadida a la lista en el formato original.</string>
 	<string name="fileCreateMsg">Fichero creado en carpeta ExportFile </string>
 	<string name="errFormat">Error de formato en el fichero de entrada</string>
+	<string name="title_activity_help">HelpActivity</string>
+    <string name="ini_exp">La gestión de la aplicación se realiza a través de seis acciones:\n\nAñadir: añade un elemento\n\nConsultar: muestra información sobre el elemento.\n\nEditar: permite modificar el elemento\n\nCompartir: comparte un elemento enviando un archivo a un amigo por correo, telegram, etc.\n\n*IMPORTANTE: El archivo de texto no está cifrado. La seguridad se basa en el mecanismo de envío.\n\nExportar: genera un archivo de texto  en la sdcard del dispositivo.\n\n*IMPORTANTE: El archivo de texto no está cifrado.\n\nBorrar: elimina el elemento.\n</string>
+	<string name="Note_h">NOTAS</string>
+    <string name="Note_exp">Se muestra la lista con las notas almacenadas. Para crear una nueva nota pulsar el botón de “Añadir” (icono cruz). Una vez creada una nota se puede:\n\n- Consultar/Editar: Pulsación corta sobre la nota\n\n- Exportar/Compartir/Borrar: Pulsación larga sobre la nota\n</string>
+    <string name="Pwd_h">CONSTRASEÑAS</string>
+    <string name="Pwd_exp">Se muestra la lista con las contraseñas almacenadas. Para crear una nueva contraseña pulsar el botón de “Añadir” (icono cruz). Una vez creada la contraseña se puede:\n\n- Consultar: Pulsación corta sobre la contraseña\n\n- Editar/Exportar/Compartir/Borrar: Pulsación larga sobre la contraseña\n</string>
+    <string name="Recipe_h">RECETAS</string>
+    <string name="Recipe_exp">Se muestra la lista con las recetas almacenadas. Para crear una nueva receta pulsar el botón de “Añadir” (icono cruz). Una vez creada una receta se puede:\n\t- Consultar/Editar: Pulsación corta sobre la receta\n\t- Exportar/Compartir/Borrar: Pulsación larga sobre la receta\n</string>
+  	<string name="Task_h">TAREAS</string>
+    <string name="Task_exp">Se muestra una lista con las tareas almacenadas. Para añadir una nueva tarea pulsar el botón “Añadir” (icono cruz). Todas las tareas añadidas pueden ser editadas y borradas.\n\nPara exportar o compartir la lista de tareas pulsar el icono correspondiente del menú.\n</string>
+    <string name="Accounts_h">CUENTAS</string>
+    <string name="Accounts_exp">Se muestra la lista con las cuentas almacenadas. Para crear una nueva cuenta pulsar el botón de “Añadir” (icono cruz). Una vez creada una cuenta se puede:\n\t-	Consultar: Pulsación corta sobre la nota\n\t- Editar/Exportar/Compartir/Borrar: Pulsación larga sobre la nota\n\nDesde la pantalla de consulta se pueden gestionar los valores que forman la cuenta.\n</string>
+    <string name="ShList_h">LISTAS DE LA COMPRA</string>
+    <string name="ShList_exp">Se muestra la lista con las listas de la compra almacenadas. Para crear una nueva lista pulsar el botón de “Añadir” (icono cruz). Una vez creada una lista se le podrán añadir tanto elemento como se desee.\n\nDesde la pantalla inicial estarán disponibles las siguientes acciones:\n\t-	Consultar: Pulsación corta sobre la lista\n\t-	Editar nombre/Exportar/Compartir/Borrar: Pulsación larga sobre la lista\n\nDesde la pantalla de consulta de una lista se pueden  Añadir, Editar o Borrar los datos.\n</string>
+    <string name="menu_help">AYUDA</string>
+        <string name="sections">SECCIONES\n</string>
 </resources>

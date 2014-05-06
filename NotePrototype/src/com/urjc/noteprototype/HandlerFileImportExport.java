@@ -61,7 +61,11 @@ public class HandlerFileImportExport {
 		BufferedReader salida = new BufferedReader(isw);
 		salida.readLine();
 		String title = salida.readLine();
-		String body = salida.readLine();
+		String body = "";
+		String aux = "";
+		while((aux=salida.readLine())!=null){
+        	body = body + aux+"\n";
+        }
 		fis.close();
 		Note n = new Note();
 		n.setTitle(title);

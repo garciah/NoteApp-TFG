@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -91,13 +90,6 @@ public class EditPwd extends Activity {
 			}
 		});
 	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
 	
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -107,7 +99,7 @@ public class EditPwd extends Activity {
 				database.createPwd(titleAux, pwdAux, userAux, urlAux);
 				database.close();
 				Toast.makeText(this, R.string.msgImpPwd,
-						Toast.LENGTH_SHORT).show();
+						Toast.LENGTH_LONG).show();
 				finish();
 				Intent i = new Intent(this, PasswordsList.class);
 				startActivity(i);

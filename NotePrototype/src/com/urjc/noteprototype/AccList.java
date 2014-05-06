@@ -116,6 +116,7 @@ public class AccList extends ListActivity {
 			i.putExtra(DatabaseHelper.getKeyTitle(), c.getString(c
 					.getColumnIndexOrThrow(DatabaseHelper.getKeyTitle())));
 			startActivityForResult(i, ACTIVITY_EDIT);
+			return true;
 		case MENU_OP3:
 			c = cursor;
 			c.moveToPosition(info.position);
