@@ -1,5 +1,13 @@
 package com.urjc.noteprototype;
 
+import com.urjc.noteprototype.account.AccList;
+import com.urjc.noteprototype.iefile.FileInputChooser;
+import com.urjc.noteprototype.note.NoteList;
+import com.urjc.noteprototype.pwd.PasswordsList;
+import com.urjc.noteprototype.recipe.RecipeList;
+import com.urjc.noteprototype.shoplist.BuyList;
+import com.urjc.noteprototype.task.TaskList;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

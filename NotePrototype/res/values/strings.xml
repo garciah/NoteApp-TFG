@@ -70,13 +70,13 @@
     <string name="openFile">IMPORT EXTERNAL FILE</string>
     <string name="share">Share</string>
     <string name="export">Export</string>
-    <string name="msgImpTask">The exported element was not modified. Tasks were added to the list in the original format.</string>
-    <string name="msgImpAcc">The exported element was not modified. Account were added to the list in the original format.</string>
-    <string name="msgImpBuy">The exported element was not modified.Shopping list were added in the original format.</string>
+    <string name="msgImpTask">Tasks were added to the list in the original format. Now you can modify.</string>
+    <string name="msgImpAcc">Account were added to the list in the original format. Now you can modify.</string>
+    <string name="msgImpBuy">Shopping list were added in the original format. Now you can modify.</string>
     <string name="msgImpRecipe">The exported element was not modified. Recipe were added to the list in the original format.</string>
     <string name="msgImpNote">The exported element was not modified. Note were added to the list in the original format.</string>
     <string name="msgImpPwd">The exported element was not modified. Password were added to the list in the original format.</string>
-    <string name="fileCreateMsg">File created in folder ExportFile </string>
+    <string name="fileCreateMsg">File created in folder NoteForHome/ExportFile </string>
     <string name="errFormat">Error format in input File</string>
     <string name="title_activity_help">HelpActivity</string>
     <string name="ini_exp">Management of the application is based on six actions:\n\nAdd: add a new element.\n\nLook: displays information about the item.\n\nEdit: edit the item.\n\nShare: share an item. You can send a file to a friend by mail, telegram, etc..\n\nIMPORTANT: The text file is not encrypted. The security mechanism is based on the shipping.\n\nExport: generate a text file on the sdcard device.\n\nIMPORTANT: The text file is not encrypted.\n\nDelete: delete the item.\n</string>

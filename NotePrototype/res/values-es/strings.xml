@@ -70,13 +70,13 @@
 	<string name="openFile">IMPORTAR ARCHIVO EXTERNO</string>
 	<string name="share">Compartir</string>
 	<string name="export">Exportar</string>
-	<string name="msgImpTask">El elemento exportado no ha sido modificado. Las tareas han sido añadidas a la lista en el formato original.</string>
-	<string name="msgImpAcc">El elemento exportado no ha sido modificado. La cuenta ha sido añadida a la lista en el formato original.</string>
-	<string name="msgImpBuy">El elemento exportado no ha sido modificado. La lista de la compra ha sido añadida en el formato original.</string>
+	<string name="msgImpTask">Las tareas han sido añadidas a la lista en el formato original. Ahora puede modificarlas.</string>
+	<string name="msgImpAcc">La cuenta ha sido añadida a la lista en el formato original. Ahora puede modificarla.</string>
+	<string name="msgImpBuy">La lista de la compra ha sido añadida en el formato original.Ahora puede modificarla.</string>
 	<string name="msgImpRecipe">El elemento exportado no ha sido modificado. La receta ha sido añadida a la lista en el formato original.</string>
 	<string name="msgImpNote">El elemento exportado no ha sido modificado. La nota ha sido añadida a la lista en el formato original.</string>
 	<string name="msgImpPwd">El elemento exportado no ha sido modificado. La contraseña ha sido añadida a la lista en el formato original.</string>
-	<string name="fileCreateMsg">Fichero creado en carpeta ExportFile </string>
+	<string name="fileCreateMsg">Fichero creado en carpeta NoteForHome/ExportFile </string>
 	<string name="errFormat">Error de formato en el fichero de entrada</string>
 	<string name="title_activity_help">HelpActivity</string>
     <string name="ini_exp">La gestión de la aplicación se realiza a través de seis acciones:\n\nAñadir: añade un elemento\n\nConsultar: muestra información sobre el elemento.\n\nEditar: permite modificar el elemento\n\nCompartir: comparte un elemento enviando un archivo a un amigo por correo, telegram, etc.\n\n*IMPORTANTE: El archivo de texto no está cifrado. La seguridad se basa en el mecanismo de envío.\n\nExportar: genera un archivo de texto  en la sdcard del dispositivo.\n\n*IMPORTANTE: El archivo de texto no está cifrado.\n\nBorrar: elimina el elemento.\n</string>
