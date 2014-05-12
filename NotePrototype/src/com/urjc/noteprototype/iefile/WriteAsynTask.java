@@ -22,18 +22,17 @@ public class WriteAsynTask extends AsyncTask<String, Void, Boolean> {
 	private static final String COD_BUY = "0006";
 	private Context context;
 	private List<?> items;
-	
+
 	public WriteAsynTask(Context context) {
 		super();
 		this.context = context;
 	}
-	
-	public WriteAsynTask(Context context, List<?> items){
+
+	public WriteAsynTask(Context context, List<?> items) {
 		super();
 		this.context = context;
 		this.items = items;
-	}	
-
+	}
 
 	@Override
 	protected Boolean doInBackground(String... params) {
@@ -58,13 +57,13 @@ public class WriteAsynTask extends AsyncTask<String, Void, Boolean> {
 			List<TaskClass> tasks = (List<TaskClass>) items;
 			route = params[1];
 			try {
-				HandlerFileImportExport.writeFileTask("list",tasks, route);
+				HandlerFileImportExport.writeFileTask("list", tasks, route);
 				return true;
 			} catch (IOException e) {
 				e.printStackTrace();
 				return false;
 			}
-	
+
 		case COD_PWD:
 			title = params[1];
 			String user = params[2];
@@ -72,7 +71,8 @@ public class WriteAsynTask extends AsyncTask<String, Void, Boolean> {
 			String url = params[4];
 			route = params[5];
 			try {
-				HandlerFileImportExport.writeFilePwd(title, user, pwd, url, route);
+				HandlerFileImportExport.writeFilePwd(title, user, pwd, url,
+						route);
 				return true;
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -84,7 +84,7 @@ public class WriteAsynTask extends AsyncTask<String, Void, Boolean> {
 			@SuppressWarnings("unchecked")
 			List<AccountElem> accs = (List<AccountElem>) items;
 			try {
-				HandlerFileImportExport.writeFileAcc(title, accs,route);
+				HandlerFileImportExport.writeFileAcc(title, accs, route);
 				return true;
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -109,7 +109,8 @@ public class WriteAsynTask extends AsyncTask<String, Void, Boolean> {
 			String nimg = params[4];
 			route = params[5];
 			try {
-				HandlerFileImportExport.writeFileRecipe(title, ing, inst,nimg ,route);
+				HandlerFileImportExport.writeFileRecipe(title, ing, inst, nimg,
+						route);
 				return true;
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -122,8 +123,9 @@ public class WriteAsynTask extends AsyncTask<String, Void, Boolean> {
 
 	@Override
 	protected void onPostExecute(Boolean result) {
-		if(result){
-			Toast.makeText(context,R.string.fileCreateMsg, Toast.LENGTH_SHORT).show();
+		if (result) {
+			Toast.makeText(context, R.string.fileCreateMsg, Toast.LENGTH_SHORT)
+					.show();
 		}
 		super.onPostExecute(result);
 	}

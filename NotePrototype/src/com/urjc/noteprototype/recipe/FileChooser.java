@@ -13,14 +13,12 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ListView;
 
-import com.urjc.noteprototype.DatabaseHelper;
 import com.urjc.noteprototype.Option;
 import com.urjc.noteprototype.R;
 
 public class FileChooser extends ListActivity {
 	private File currentDir;
 	private FileArrayAdapter adapter;
-	private String route;
 	private static String pathAppImgC;
 
 	@Override
@@ -28,10 +26,6 @@ public class FileChooser extends ListActivity {
 		super.onCreate(savedInstanceState);
 		currentDir = new File(getString(R.string.sdcardRoute));
 		pathAppImgC = getString(R.string.routeImgFilesC);
-		Bundle extras = getIntent().getExtras();
-		if (extras != null) {
-			route = extras.getString(DatabaseHelper.getKeyRoute());
-		}
 		fill(currentDir);
 	}
 
@@ -102,13 +96,9 @@ public class FileChooser extends ListActivity {
 
 	private void onFileClick(Option o) {
 		String newRoute = pathAppImgC + o.getName();
-		if (!route.equals(newRoute)) {
-			File file = new File(route);
-			file.delete();
-		}	
 		Intent intent = new Intent();
 		intent.putExtra("newRoute", newRoute);
-		intent.putExtra("oldRoute",o.getPath());
+		intent.putExtra("oldRoute", o.getPath());
 		setResult(RESULT_OK, intent);
 		finish();
 	}

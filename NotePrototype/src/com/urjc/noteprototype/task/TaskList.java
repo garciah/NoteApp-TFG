@@ -41,6 +41,7 @@ public class TaskList extends ListActivity {
 			try {
 				List<TaskClass> auxList = new ArrayList<TaskClass>();
 				auxList = HandlerFileImportExport.readFileTask(route);
+
 				database.open();
 				for (int i = 0; i < auxList.size(); i++) {
 					int aux = 0;
@@ -50,8 +51,8 @@ public class TaskList extends ListActivity {
 					database.createTask(auxList.get(i).getName(), aux);
 				}
 				database.close();
-				Toast.makeText(this, R.string.msgImpTask,
-						Toast.LENGTH_LONG).show();
+				Toast.makeText(this, R.string.msgImpTask, Toast.LENGTH_LONG)
+						.show();
 			} catch (IOException e) {
 				e.printStackTrace();
 				Toast.makeText(this, "Error File", Toast.LENGTH_SHORT).show();

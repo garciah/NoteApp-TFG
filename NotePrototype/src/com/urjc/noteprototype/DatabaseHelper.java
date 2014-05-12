@@ -51,7 +51,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			+ " integer primary key autoincrement, " + KEY_TITLE
 			+ " text not null, " + KEY_PWD + " text not null, " + KEY_URL
 			+ " text, " + KEY_USER + " text);";
-	
+
 	private static final String DATABASE_CREATE_3 = "create table "
 			+ DATABASE_TABLE_BUY + " (" + KEY_IDBUY
 			+ " integer primary key autoincrement, " + KEY_TITLE
@@ -75,19 +75,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			+ " integer primary key autoincrement, " + KEY_TITLE
 			+ " text not null, " + KEY_INGREDIENTS + " text, "
 			+ KEY_INSTRUCTIONS + " text, " + KEY_ROUTE + " text);";
-			
+
 	private static final String DATABASE_CREATE_7 = "create table "
 			+ DATABASE_TABLE_ACCOUNT + " (" + KEY_IDACC
 			+ " integer primary key autoincrement, " + KEY_TITLE
-			+ " text not null);";		
-	
+			+ " text not null);";
+
 	private static final String DATABASE_CREATE_8 = "create table "
 			+ DATABASE_TABLE_ELEMS_ACCOUNT + " (" + KEY_ROWID
 			+ " integer primary key autoincrement, " + KEY_TAG
-			+ " text not null, " + KEY_NUM + " real, "
-			+ KEY_ACC + " integer, " + "FOREIGN KEY ("
-			+ KEY_ACC + ") references " + DATABASE_TABLE_ACCOUNT + " ("
-			+ KEY_IDACC + ") ON DELETE CASCADE);";	
+			+ " text not null, " + KEY_NUM + " real, " + KEY_ACC + " integer, "
+			+ "FOREIGN KEY (" + KEY_ACC + ") references "
+			+ DATABASE_TABLE_ACCOUNT + " (" + KEY_IDACC
+			+ ") ON DELETE CASCADE);";
 
 	public DatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -143,7 +143,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public static String getDatabaseTableRecipe() {
 		return DATABASE_TABLE_RECIPE;
 	}
-	
+
 	public static String getDatabaseTableAccount() {
 		return DATABASE_TABLE_ACCOUNT;
 	}

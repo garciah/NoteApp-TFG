@@ -22,7 +22,7 @@ public class AccElemAdapter extends BaseAdapter {
 	protected List<AccountElem> items;
 	private AccountDB database;
 
-	public  AccElemAdapter(Activity activity, List<AccountElem> items) {
+	public AccElemAdapter(Activity activity, List<AccountElem> items) {
 		super();
 		this.activity = activity;
 		this.items = items;
@@ -57,8 +57,7 @@ public class AccElemAdapter extends BaseAdapter {
 		t.setText(e.getTag());
 		TextView n = (TextView) v.findViewById(R.id.elemNumAcc);
 		n.setText(Float.toString(e.getNum()));
-		ImageButton ib1 = (ImageButton) v
-				.findViewById(R.id.imageButtonEditAcc);
+		ImageButton ib1 = (ImageButton) v.findViewById(R.id.imageButtonEditAcc);
 		ImageButton ib2 = (ImageButton) v.findViewById(R.id.imageButtonDelAcc);
 
 		database = new AccountDB(activity);
@@ -89,7 +88,7 @@ public class AccElemAdapter extends BaseAdapter {
 				Intent i = new Intent(activity, AccElemList.class);
 				i.putExtra(DatabaseHelper.getKeyAcc(), e.getIdAcc());
 				activity.startActivity(i);
-				
+
 			}
 		});
 

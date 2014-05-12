@@ -57,16 +57,18 @@ public class TableAccount extends Activity {
 					tit.setText(titleAcc);
 					items.remove(0);
 					database.open();
-					idAcc =	database.createAccount(titleAcc);
-					if(idAcc>=0){
+					idAcc = database.createAccount(titleAcc);
+					if (idAcc >= 0) {
 						for (int i = 0; i < items.size(); i++) {
-							database.createAccountElement(items.get(i).getTag(), items.get(i).getNum(), idAcc);
+							database.createAccountElement(
+									items.get(i).getTag(), items.get(i)
+											.getNum(), idAcc);
 						}
-						
-					}	
+
+					}
 					database.close();
-					Toast.makeText(this, R.string.msgImpAcc,
-							Toast.LENGTH_LONG).show();
+					Toast.makeText(this, R.string.msgImpAcc, Toast.LENGTH_LONG)
+							.show();
 				} catch (IOException e) {
 					e.printStackTrace();
 					Toast.makeText(this, "Error File", Toast.LENGTH_SHORT)
@@ -84,7 +86,8 @@ public class TableAccount extends Activity {
 							long id = cursor.getLong(0);
 							String tag = cursor.getString(1);
 							float num = cursor.getFloat(2);
-							AccountElem elem = new AccountElem(id, tag, num, idAcc);
+							AccountElem elem = new AccountElem(id, tag, num,
+									idAcc);
 							items.add(elem);
 						} while (cursor.moveToNext());
 					}

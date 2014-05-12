@@ -8,15 +8,15 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-public class AccountDB{
+public class AccountDB {
 
 	private DatabaseHelper dbHelper;
 	private SQLiteDatabase database;
 	private String[] allAccs = { DatabaseHelper.getKeyIdacc(),
-			DatabaseHelper.getKeyTitle()};
+			DatabaseHelper.getKeyTitle() };
 	private String[] allTags = { DatabaseHelper.getKeyRowid(),
 			DatabaseHelper.getKeyTag(), DatabaseHelper.getKeyNum(),
-			DatabaseHelper.getKeyAcc()};
+			DatabaseHelper.getKeyAcc() };
 
 	/**
 	 * Constructor - takes the context to allow the database to be
@@ -48,9 +48,9 @@ public class AccountDB{
 	}
 
 	/**
-	 * Create a new account using the title. If the element is
-	 * successfully created return the new rowId for that element, otherwise return
-	 * a -1 to indicate failure.
+	 * Create a new account using the title. If the element is successfully
+	 * created return the new rowId for that element, otherwise return a -1 to
+	 * indicate failure.
 	 * 
 	 * @param title
 	 * @return rowId or -1 if failed
@@ -79,8 +79,8 @@ public class AccountDB{
 	 * @return Cursor over all list
 	 */
 	public Cursor getCursorAllAccs() {
-		return database.query(DatabaseHelper.getDatabaseTableAccount(), allAccs,
-				null, null, null, null, null);
+		return database.query(DatabaseHelper.getDatabaseTableAccount(),
+				allAccs, null, null, null, null, null);
 	}
 
 	/**
@@ -109,14 +109,14 @@ public class AccountDB{
 	 * @param idAcc
 	 * @return rowId or -1 if failed
 	 */
-	public long createAccountElement(String tag, float number,long idAcc) {
+	public long createAccountElement(String tag, float number, long idAcc) {
 
 		ContentValues initialValues = new ContentValues();
 		initialValues.put(DatabaseHelper.getKeyTag(), tag);
 		initialValues.put(DatabaseHelper.getKeyNum(), number);
 		initialValues.put(DatabaseHelper.getKeyAcc(), idAcc);
-		return database.insert(DatabaseHelper.getDatabaseTableElemsAccount(), null,
-				initialValues);
+		return database.insert(DatabaseHelper.getDatabaseTableElemsAccount(),
+				null, initialValues);
 	}
 
 	/**
@@ -155,8 +155,8 @@ public class AccountDB{
 		ContentValues args = new ContentValues();
 		args.put(DatabaseHelper.getKeyTag(), tag);
 		args.put(DatabaseHelper.getKeyNum(), num);
-		return database.update(DatabaseHelper.getDatabaseTableElemsAccount(), args,
-				DatabaseHelper.getKeyRowid() + "=" + rowId, null) > 0;
+		return database.update(DatabaseHelper.getDatabaseTableElemsAccount(),
+				args, DatabaseHelper.getKeyRowid() + "=" + rowId, null) > 0;
 	}
 
 }

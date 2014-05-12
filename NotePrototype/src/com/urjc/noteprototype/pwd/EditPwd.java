@@ -25,7 +25,7 @@ public class EditPwd extends Activity {
 	private String userAux;
 	private String pwdAux;
 	private String urlAux;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -69,19 +69,21 @@ public class EditPwd extends Activity {
 				String urlAux = url.getText().toString();
 				if (titleAux.length() > 0 && pwdAux.length() > 0) {
 					database.open();
-					if(impFile){
+					if (impFile) {
 						database.createPwd(titleAux, pwdAux, userAux, urlAux);
-					}else{
+					} else {
 						if (id != null) {
 							database.updatePwd(id, titleAux, pwdAux, userAux,
 									urlAux);
 						} else {
-							database.createPwd(titleAux, pwdAux, userAux, urlAux);
+							database.createPwd(titleAux, pwdAux, userAux,
+									urlAux);
 						}
 					}
 					database.close();
-					if(impFile){
-						Intent i = new Intent(getApplicationContext(), PasswordsList.class);
+					if (impFile) {
+						Intent i = new Intent(getApplicationContext(),
+								PasswordsList.class);
 						startActivity(i);
 					}
 					finish();
@@ -93,20 +95,20 @@ public class EditPwd extends Activity {
 			}
 		});
 	}
-	
+
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if ((keyCode == KeyEvent.KEYCODE_BACK)) {
-			if(impFile){
+			if (impFile) {
 				database.open();
 				database.createPwd(titleAux, pwdAux, userAux, urlAux);
 				database.close();
-				Toast.makeText(this, R.string.msgImpPwd,
-						Toast.LENGTH_LONG).show();
+				Toast.makeText(this, R.string.msgImpPwd, Toast.LENGTH_LONG)
+						.show();
 				finish();
 				Intent i = new Intent(this, PasswordsList.class);
 				startActivity(i);
-				return true;	
+				return true;
 			}
 		}
 		return super.onKeyDown(keyCode, event);

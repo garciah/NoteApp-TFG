@@ -63,7 +63,7 @@ public class AccElemList extends ListActivity {
 		switch (item.getItemId()) {
 		case R.id.menu_new:
 			Intent i = new Intent(this, EditElementAcc.class);
-			i.putExtra(DatabaseHelper.getKeyAcc(),idA);
+			i.putExtra(DatabaseHelper.getKeyAcc(), idA);
 			startActivityForResult(i, ACTIVITY_CREATE);
 			return true;
 		}
@@ -83,7 +83,7 @@ public class AccElemList extends ListActivity {
 			break;
 		}
 	}
-	
+
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if ((keyCode == KeyEvent.KEYCODE_BACK)) {

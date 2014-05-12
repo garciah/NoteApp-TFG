@@ -108,7 +108,7 @@ public class RecipeDB {
 		return database.update(DatabaseHelper.getDatabaseTableRecipe(), args,
 				DatabaseHelper.getKeyRowid() + "=" + rowId, null) > 0;
 	}
-	
+
 	/**
 	 * Return a Cursor over the recipe with id "id"
 	 * 
@@ -116,7 +116,7 @@ public class RecipeDB {
 	 * @return Cursor over element with id indicated
 	 */
 	public Cursor getRecipeForId(long id) {
-		String cond = "" + DatabaseHelper.getKeyRowid()+ "=?";
+		String cond = "" + DatabaseHelper.getKeyRowid() + "=?";
 		String[] args = new String[] { String.valueOf(id) };
 		return database.query(DatabaseHelper.getDatabaseTableRecipe(), allCols,
 				cond, args, null, null, null);

@@ -59,7 +59,8 @@ public class CopiarImagenAsyncTask extends AsyncTask<String, Void, String> {
 	@Override
 	protected void onPostExecute(String result) {
 		super.onPostExecute(result);
-		imageView.setImageBitmap(HandlerBitmap.decodeScaledBitmapFromSdCard(result, 250, 250));
+		imageView.setImageBitmap(HandlerBitmap.decodeScaledBitmapFromSdCard(
+				result, 250, 250));
 	}
 
 }

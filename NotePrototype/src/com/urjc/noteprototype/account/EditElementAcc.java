@@ -37,11 +37,11 @@ public class EditElementAcc extends Activity {
 			id = extras.getLong(DatabaseHelper.getKeyRowid());
 			num = extras.getFloat(DatabaseHelper.getKeyNum());
 			idAcc = extras.getLong(DatabaseHelper.getKeyAcc());
-			
+
 			if (tag != null) {
 				tagEt.setText(tag);
 			}
-			numEt.setText(Float.toString(num));			
+			numEt.setText(Float.toString(num));
 		}
 
 		confirmButton.setOnClickListener(new View.OnClickListener() {

@@ -10,12 +10,13 @@
 
     <ImageButton
         android:id="@+id/imageButtonEdit"
-        android:layout_width="35dp"
-        android:layout_height="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@+id/imageButtonDel"
         android:contentDescription="@string/menuList2"
+        android:padding="0dp"
         android:src="@drawable/edit" />
     
     <ImageButton

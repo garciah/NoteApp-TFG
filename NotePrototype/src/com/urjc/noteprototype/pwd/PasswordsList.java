@@ -111,12 +111,12 @@ public class PasswordsList extends ListActivity {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
 				.getMenuInfo();
 		Cursor c;
-		String t,u,p,ur;
+		String t, u, p, ur;
 		switch (item.getItemId()) {
 		case MENU_OP1:
 			database.open();
 			database.deletePwd(info.id);
-			database.close();	
+			database.close();
 			fillData();
 			Toast toast1 = Toast.makeText(getApplicationContext(),
 					R.string.msgDelPwd, Toast.LENGTH_SHORT);
@@ -143,40 +143,47 @@ public class PasswordsList extends ListActivity {
 			database.open();
 			c = cursor;
 			c.moveToPosition(info.position);
-			t = c.getString(c.getColumnIndexOrThrow(DatabaseHelper.getKeyTitle()));
+			t = c.getString(c.getColumnIndexOrThrow(DatabaseHelper
+					.getKeyTitle()));
 			u = c.getString(c.getColumnIndexOrThrow(DatabaseHelper.getKeyUser()));
-			p =c.getString(c.getColumnIndexOrThrow(DatabaseHelper.getKeyPwd()));
+			p = c.getString(c.getColumnIndexOrThrow(DatabaseHelper.getKeyPwd()));
 			ur = c.getString(c.getColumnIndexOrThrow(DatabaseHelper.getKeyUrl()));
 			database.close();
 			try {
-				String file = HandlerFileImportExport.writeFilePwd(t, u, p, ur, getString(R.string.routeSharingFile));
+				String file = HandlerFileImportExport.writeFilePwd(t, u, p, ur,
+						getString(R.string.routeSharingFile));
 				if (file != "") {
 					f = new File(file);
 					Uri path = Uri.fromFile(f);
 					Intent shareIntent = new Intent();
 					shareIntent.setAction(Intent.ACTION_SEND);
-					shareIntent.putExtra(Intent.EXTRA_TEXT, "Sharing File NoteForHome");
+					shareIntent.putExtra(Intent.EXTRA_TEXT,
+							"Sharing File NoteForHome");
 					shareIntent.putExtra(Intent.EXTRA_STREAM, path);
 					shareIntent.setType("application/octet-stream");
-					startActivityForResult(Intent.createChooser(shareIntent, "Pwd"),ACTIVITY_EXPORT);
+					startActivityForResult(
+							Intent.createChooser(shareIntent, "Pwd"),
+							ACTIVITY_EXPORT);
 				}
 
 			} catch (IOException e) {
 				e.printStackTrace();
-			}	
+			}
 			return true;
 		case MENU_OP4:
 			database.open();
 			c = cursor;
 			c.moveToPosition(info.position);
-			t = c.getString(c.getColumnIndexOrThrow(DatabaseHelper.getKeyTitle()));
+			t = c.getString(c.getColumnIndexOrThrow(DatabaseHelper
+					.getKeyTitle()));
 			u = c.getString(c.getColumnIndexOrThrow(DatabaseHelper.getKeyUser()));
-			p =c.getString(c.getColumnIndexOrThrow(DatabaseHelper.getKeyPwd()));
+			p = c.getString(c.getColumnIndexOrThrow(DatabaseHelper.getKeyPwd()));
 			ur = c.getString(c.getColumnIndexOrThrow(DatabaseHelper.getKeyUrl()));
 			database.close();
 			WriteAsynTask writeAsynTask = new WriteAsynTask(this);
-			writeAsynTask.execute("0002",t,u,p,ur,getString(R.string.routeExportFile));
-			return true;		
+			writeAsynTask.execute("0002", t, u, p, ur,
+					getString(R.string.routeExportFile));
+			return true;
 		default:
 			return super.onContextItemSelected(item);
 		}
@@ -197,7 +204,7 @@ public class PasswordsList extends ListActivity {
 		case ACTIVITY_EXPORT:
 			f.delete();
 			break;
-		}	
+		}
 	}
 
 	@Override

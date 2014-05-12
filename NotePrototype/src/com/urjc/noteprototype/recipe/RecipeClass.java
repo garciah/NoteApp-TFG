@@ -6,11 +6,11 @@ public class RecipeClass {
 	private String ingredients;
 	private String instructions;
 	private String imageName;
-	
+
 	public RecipeClass() {
 		super();
 	}
-	
+
 	public RecipeClass(long id, String title, String ingredients,
 			String instructions, String imageName) {
 		super();

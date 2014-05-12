@@ -153,7 +153,7 @@ public class NoteDB {
 		n.setBody(cursor.getString(2));
 		return n;
 	}
-	
+
 	/**
 	 * Return a Cursor over the note with id "id"
 	 * 
@@ -161,8 +161,9 @@ public class NoteDB {
 	 * @return Cursor over element with id indicated
 	 */
 	public Cursor getNoteForId(long id) {
-		String cond = "" + DatabaseHelper.getKeyRowid()+ "=?";
-		String[] results = new String[] { DatabaseHelper.getKeyTitle(), DatabaseHelper.getKeyBody()};
+		String cond = "" + DatabaseHelper.getKeyRowid() + "=?";
+		String[] results = new String[] { DatabaseHelper.getKeyTitle(),
+				DatabaseHelper.getKeyBody() };
 		String[] args = new String[] { String.valueOf(id) };
 		return database.query(DatabaseHelper.getDatabaseTableNote(), results,
 				cond, args, null, null, null);

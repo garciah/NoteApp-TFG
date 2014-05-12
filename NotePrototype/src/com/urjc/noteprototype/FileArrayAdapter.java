@@ -9,12 +9,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class FileArrayAdapter extends ArrayAdapter<Option>{
+public class FileArrayAdapter extends ArrayAdapter<Option> {
 
 	private Context c;
 	private int id;
-	private List<Option>items;
-	
+	private List<Option> items;
+
 	public FileArrayAdapter(Context context, int textViewResourceId,
 			List<Option> objects) {
 		super(context, textViewResourceId, objects);
@@ -22,31 +22,31 @@ public class FileArrayAdapter extends ArrayAdapter<Option>{
 		id = textViewResourceId;
 		items = objects;
 	}
-	
-	public Option getItem(int i)
-	 {
-		 return items.get(i);
-	 }
-	 @Override
-      public View getView(int position, View convertView, ViewGroup parent) {
-              View v = convertView;
-              if (v == null) {
-                  LayoutInflater vi = (LayoutInflater)c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                  v = vi.inflate(id, null);
-              }
-              final Option o = items.get(position);
-              if (o != null) {
-                      TextView t1 = (TextView) v.findViewById(R.id.TextViewFC_1);
-                      TextView t2 = (TextView) v.findViewById(R.id.TextViewFC_2);
-                      
-                      if(t1!=null)
-                      	t1.setText(o.getName());
-                      if(t2!=null)
-                      	t2.setText(o.getData());
-                      
-              }
-              return v;
-      }
 
+	public Option getItem(int i) {
+		return items.get(i);
+	}
+
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+		View v = convertView;
+		if (v == null) {
+			LayoutInflater vi = (LayoutInflater) c
+					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			v = vi.inflate(id, null);
+		}
+		final Option o = items.get(position);
+		if (o != null) {
+			TextView t1 = (TextView) v.findViewById(R.id.TextViewFC_1);
+			TextView t2 = (TextView) v.findViewById(R.id.TextViewFC_2);
+
+			if (t1 != null)
+				t1.setText(o.getName());
+			if (t2 != null)
+				t2.setText(o.getData());
+
+		}
+		return v;
+	}
 
 }

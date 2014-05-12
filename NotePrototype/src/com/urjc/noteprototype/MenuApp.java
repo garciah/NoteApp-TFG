@@ -75,7 +75,7 @@ public class MenuApp extends Activity {
 				finish();
 			}
 		});
-		
+
 		opRecipe.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
@@ -84,7 +84,7 @@ public class MenuApp extends Activity {
 				finish();
 			}
 		});
-		
+
 		opAcc.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
@@ -93,23 +93,24 @@ public class MenuApp extends Activity {
 				finish();
 			}
 		});
-		
+
 		opFile.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				Intent i = new Intent(getApplicationContext(), FileInputChooser.class);
+				Intent i = new Intent(getApplicationContext(),
+						FileInputChooser.class);
 				startActivity(i);
 				finish();
 			}
 		});
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.menu_ini, menu);
 		return true;
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		Intent i = new Intent(getApplicationContext(), HelpActivity.class);

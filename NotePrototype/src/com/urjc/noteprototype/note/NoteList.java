@@ -113,8 +113,8 @@ public class NoteList extends ListActivity {
 			database.deleteNote(info.id);
 			database.close();
 			fillData();
-			Toast.makeText(getApplicationContext(),
-					R.string.msgDelete, Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), R.string.msgDelete,
+					Toast.LENGTH_SHORT).show();
 			return true;
 		case MENU_OP2:
 			database.open();
@@ -125,24 +125,26 @@ public class NoteList extends ListActivity {
 			database.close();
 			try {
 				String sPath = getString(R.string.routeSharingFile);
-				HandlerFileImportExport.writeFileNote(t, b,
-						sPath);
+				HandlerFileImportExport.writeFileNote(t, b, sPath);
 				file = new File(sPath);
 				if (file.exists()) {
 					Uri path = Uri.fromFile(file);
 					Intent shareIntent = new Intent();
 					shareIntent.setAction(Intent.ACTION_SEND);
-					shareIntent.putExtra(Intent.EXTRA_TEXT, "Sharing File NoteForHome");
+					shareIntent.putExtra(Intent.EXTRA_TEXT,
+							"Sharing File NoteForHome");
 					shareIntent.putExtra(Intent.EXTRA_STREAM, path);
 					shareIntent.setType("application/octet-stream");
-					startActivityForResult(Intent.createChooser(shareIntent, "Note"),ACTIVITY_EXPORT);
+					startActivityForResult(
+							Intent.createChooser(shareIntent, "Note"),
+							ACTIVITY_EXPORT);
 				}
 
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 			return true;
-		case MENU_OP3:	
+		case MENU_OP3:
 			database.open();
 			c = database.getNoteForId(info.id);
 			c.moveToFirst();
@@ -150,7 +152,8 @@ public class NoteList extends ListActivity {
 			b = c.getString(1);
 			database.close();
 			WriteAsynTask writeAsynTask = new WriteAsynTask(this);
-			writeAsynTask.execute("0001", t, b, getString(R.string.routeExportFile));
+			writeAsynTask.execute("0001", t, b,
+					getString(R.string.routeExportFile));
 			return true;
 		default:
 			return super.onContextItemSelected(item);

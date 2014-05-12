@@ -90,17 +90,10 @@ public class FileInputChooser extends ListActivity {
 	}
 
 	private void onFileClick(Option o) {
-		String cod = "0000";
 		String name = o.getName();
-		String route =  o.getPath();
-		try {
-			cod = HandlerFileImportExport.readCode(o.getPath());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		String route = o.getPath();
 		ReadAsynTask at = new ReadAsynTask(this);
-		at.execute(cod,name,route);
-		finish();
+		at.execute(name, route);
 	}
 
 }

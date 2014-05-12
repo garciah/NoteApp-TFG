@@ -25,7 +25,7 @@ public class BuyElemList extends ListActivity {
 	private Cursor cursor;
 	private long idB;
 	private Boolean impFile;
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -36,32 +36,32 @@ public class BuyElemList extends ListActivity {
 		List<ElemBuyList> items = new ArrayList<ElemBuyList>();
 		if (extras != null) {
 			impFile = extras.getBoolean("impFile");
-			if(impFile){
+			if (impFile) {
 				String route = extras.getString("accRoute");
 				try {
 					items = HandlerFileImportExport.readFileShopping(route);
 					String title = items.get(0).getName();
 					items.remove(0);
 					database.open();
-					idB = database.createBuy(title);	
-					for(int i=0;i<items.size();i++){
+					idB = database.createBuy(title);
+					for (int i = 0; i < items.size(); i++) {
 						String n = items.get(i).getName();
 						int a = items.get(i).getAmount();
 						int c = 0;
-						if(items.get(i).getCheck()){
+						if (items.get(i).getCheck()) {
 							c = 1;
 						}
 						database.createBuyElement(n, a, c, idB);
 					}
 					database.close();
-					Toast.makeText(this, R.string.msgImpBuy,
-							Toast.LENGTH_LONG).show();
+					Toast.makeText(this, R.string.msgImpBuy, Toast.LENGTH_LONG)
+							.show();
 				} catch (IOException e) {
 					e.printStackTrace();
 					Toast.makeText(this, "Error File", Toast.LENGTH_SHORT)
 							.show();
 				}
-			}else{
+			} else {
 				idB = extras.getLong(DatabaseHelper.getKeyTitlebuy());
 			}
 			fillData(idB);

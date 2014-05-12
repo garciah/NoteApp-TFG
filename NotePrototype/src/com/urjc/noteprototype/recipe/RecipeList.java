@@ -38,7 +38,6 @@ public class RecipeList extends ListActivity {
 	private Cursor cursor;
 	private File f;
 
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -75,7 +74,7 @@ public class RecipeList extends ListActivity {
 				.getColumnIndexOrThrow(DatabaseHelper.getKeyInstructions())));
 		i.putExtra(DatabaseHelper.getKeyRoute(), c.getString(c
 				.getColumnIndexOrThrow(DatabaseHelper.getKeyRoute())));
-		i.putExtra("upd",true);
+		i.putExtra("upd", true);
 		database.close();
 		startActivityForResult(i, ACTIVITY_EDIT);
 	}
@@ -111,7 +110,7 @@ public class RecipeList extends ListActivity {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
 				.getMenuInfo();
 		Cursor c;
-		String t, ing, inst, pimg,nimg;
+		String t, ing, inst, pimg, nimg;
 		String[] aux;
 		switch (item.getItemId()) {
 		case MENU_OP1:
@@ -128,22 +127,23 @@ public class RecipeList extends ListActivity {
 					R.string.msgDelRecipe, Toast.LENGTH_SHORT);
 			toast1.show();
 			return true;
-		case MENU_OP2:	
+		case MENU_OP2:
 			database.open();
 			c = database.getRecipeForId(info.id);
 			c.moveToFirst();
-			t = c.getString(1)+"Temp";
-			ing =c.getString(2); 
-			inst =c.getString(3);
+			t = c.getString(1) + "Temp";
+			ing = c.getString(2);
+			inst = c.getString(3);
 			pimg = c.getString(4);
 			aux = pimg.split("/");
-			nimg = aux[aux.length-1];
+			nimg = aux[aux.length - 1];
 			database.close();
 			try {
-				String fi = HandlerFileImportExport.writeFileRecipe(t, ing, inst,nimg ,getString(R.string.routeSharingFile));
+				String fi = HandlerFileImportExport.writeFileRecipe(t, ing,
+						inst, nimg, getString(R.string.routeSharingFile));
 				if (fi != "") {
 					f = new File(fi);
-					File imgFile = new  File(pimg);
+					File imgFile = new File(pimg);
 					Uri path = Uri.fromFile(f);
 					Uri pImg = Uri.fromFile(imgFile);
 					ArrayList<Uri> files = new ArrayList<Uri>();
@@ -151,33 +151,37 @@ public class RecipeList extends ListActivity {
 					files.add(pImg);
 					Intent shareIntent = new Intent();
 					shareIntent.setAction(Intent.ACTION_SEND_MULTIPLE);
-					shareIntent.putExtra(Intent.EXTRA_TEXT, "Sharing File NoteForHome");
+					shareIntent.putExtra(Intent.EXTRA_TEXT,
+							"Sharing File NoteForHome");
 					shareIntent.putExtra(Intent.EXTRA_STREAM, files);
 					shareIntent.setType("application/octet-stream");
-					startActivityForResult(Intent.createChooser(shareIntent, "Recipe"),ACTIVITY_EXPORT);
+					startActivityForResult(
+							Intent.createChooser(shareIntent, "Recipe"),
+							ACTIVITY_EXPORT);
 				}
 
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			return true;	
+			return true;
 		case MENU_OP3:
 			database.open();
 			c = database.getRecipeForId(info.id);
 			c.moveToFirst();
 			t = c.getString(1);
-			ing =c.getString(2); 
-			inst =c.getString(3);
+			ing = c.getString(2);
+			inst = c.getString(3);
 			pimg = c.getString(4);
 			aux = pimg.split("/");
-			nimg = aux[aux.length-1];
+			nimg = aux[aux.length - 1];
 			database.close();
 			WriteAsynTask writeAsynTask = new WriteAsynTask(this);
-			writeAsynTask.execute("0004", t, ing, inst,nimg ,getString(R.string.routeExportFile));
+			writeAsynTask.execute("0004", t, ing, inst, nimg,
+					getString(R.string.routeExportFile));
 			return true;
 		default:
 			return super.onContextItemSelected(item);
-		}	
+		}
 	}
 
 	@Override
@@ -194,7 +198,7 @@ public class RecipeList extends ListActivity {
 			break;
 		case ACTIVITY_EXPORT:
 			f.delete();
-			break;	
+			break;
 		}
 	}
 

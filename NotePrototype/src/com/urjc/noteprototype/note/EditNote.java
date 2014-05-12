@@ -58,9 +58,9 @@ public class EditNote extends Activity {
 				String body = bodyText.getText().toString();
 				if (title.length() > 0 && body.length() > 0) {
 					database.open();
-					if(impFile){
+					if (impFile) {
 						database.createNote(title, body);
-					}else{
+					} else {
 						if (id != null) {
 							database.updateNote(id, title, body);
 						} else {
@@ -68,8 +68,9 @@ public class EditNote extends Activity {
 						}
 					}
 					database.close();
-					if(impFile){
-						Intent i = new Intent(getApplicationContext(), NoteList.class);
+					if (impFile) {
+						Intent i = new Intent(getApplicationContext(),
+								NoteList.class);
 						startActivity(i);
 					}
 					finish();
@@ -81,20 +82,20 @@ public class EditNote extends Activity {
 			}
 		});
 	}
-	
+
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if ((keyCode == KeyEvent.KEYCODE_BACK)) {
-			if(impFile){
+			if (impFile) {
 				database.open();
 				database.createNote(title, body);
 				database.close();
-				Toast.makeText(this, R.string.msgImpNote,
-						Toast.LENGTH_LONG).show();
+				Toast.makeText(this, R.string.msgImpNote, Toast.LENGTH_LONG)
+						.show();
 				finish();
 				Intent i = new Intent(this, MenuApp.class);
 				startActivity(i);
-				return true;	
+				return true;
 			}
 		}
 		return super.onKeyDown(keyCode, event);

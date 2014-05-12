@@ -6,7 +6,7 @@ public class PwdClass {
 	private String pwd;
 	private String url;
 	private long id;
-	
+
 	public PwdClass(String title, String user, String pwd, String url, long id) {
 		super();
 		this.title = title;
@@ -17,8 +17,10 @@ public class PwdClass {
 	}
 
 	public PwdClass() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
+
+
 
 	public String getTitle() {
 		return title;
@@ -59,6 +61,5 @@ public class PwdClass {
 	public void setId(long id) {
 		this.id = id;
 	}
-	
-	
+
 }

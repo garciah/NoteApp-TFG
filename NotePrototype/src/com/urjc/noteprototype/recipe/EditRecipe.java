@@ -12,7 +12,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -62,53 +61,60 @@ public class EditRecipe extends Activity {
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			impFile = extras.getBoolean("impFile");
+			System.out.println("---------> impFile onCreate -> "+impFile);
 			titleAux = extras.getString(DatabaseHelper.getKeyTitle());
 			ingredientsAux = extras.getString(DatabaseHelper
 					.getKeyIngredients());
 			instructionsAux = extras.getString(DatabaseHelper
 					.getKeyInstructions());
 			route = extras.getString(DatabaseHelper.getKeyRoute());
+			System.out.println("---------> route onCreate -> "+route);
 			id = extras.getLong(DatabaseHelper.getKeyRowid());
 			upd = extras.getBoolean("upd");
-			if(route != null){
+			if (route != null) {
 				imgFile = new File(route);
-				if(impFile){
-						String imgName = extras.getString("imgName");
-						String pathAppImgC= getString(R.string.routeImgFilesC);
-						String newRoute = pathAppImgC + imgName;
-						if(!imgFile.getPath().equals(newRoute)){
-							File auxFile = new  File(newRoute);
-							if(auxFile.exists()){
-								try {
-									File file = new File(Environment.getExternalStorageDirectory(),
-											getString(R.string.routeImgFiles));
-									if (!file.exists()) {
-										if (!file.mkdirs()) {
-											Log.e("TravellerLog :: ", "Problem creating Image folder");
-										}
+				if (impFile) {
+					String imgName = extras.getString("imgName");
+					String pathAppImgC = getString(R.string.routeImgFilesC);
+					String newRoute = pathAppImgC + imgName;
+					System.out.println("---------> newRoute onCreate -> "+newRoute);
+					if (!imgFile.getPath().equals(newRoute)) {
+						File auxFile = new File(newRoute);
+						if (auxFile.exists()) {
+							try {
+								File file = new File(
+										Environment
+												.getExternalStorageDirectory(),
+										getString(R.string.routeImgFiles));
+								if (!file.exists()) {
+									if (!file.mkdirs()) {
+										Log.e("TravellerLog :: ",
+												"Problem creating Image folder");
 									}
-									InputStream in = new FileInputStream(imgFile);
-									OutputStream out = new FileOutputStream(auxFile);
-									byte[] buf = new byte[1024];
-									int len;
-									while ((len = in.read(buf)) > 0) {
-										out.write(buf, 0, len);
-									}
-									in.close();
-									out.close();
-								} catch (FileNotFoundException ex) {
-									ex.printStackTrace();
-								} catch (IOException e) {
-									e.printStackTrace();
 								}
-								route = newRoute;
+								InputStream in = new FileInputStream(imgFile);
+								OutputStream out = new FileOutputStream(auxFile);
+								byte[] buf = new byte[1024];
+								int len;
+								while ((len = in.read(buf)) > 0) {
+									out.write(buf, 0, len);
+								}
+								in.close();
+								out.close();
+							} catch (FileNotFoundException ex) {
+								ex.printStackTrace();
+							} catch (IOException e) {
+								e.printStackTrace();
 							}
+							route = newRoute;
 						}
-					
+					}
+
 				}
-				if(imgFile.exists()){
-				    Bitmap myBitmap = decodeScaledBitmapFromSdCard(route, 250, 250);
-				    image.setImageBitmap(myBitmap);
+				if (imgFile.exists()) {
+					Bitmap myBitmap = HandlerBitmap
+							.decodeScaledBitmapFromSdCard(route, 250, 250);
+					image.setImageBitmap(myBitmap);
 				}
 			}
 			if (titleAux != null) {
@@ -121,13 +127,12 @@ public class EditRecipe extends Activity {
 				instructions.setText(instructionsAux);
 			}
 		}
-		
+
 		final Context c = this;
 		searchImgButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
 				Intent i = new Intent(c, FileChooser.class);
-				i.putExtra(DatabaseHelper.getKeyRoute(), route);
 				startActivityForResult(i, CHANGE_IMAGE);
 			}
 		});
@@ -141,15 +146,18 @@ public class EditRecipe extends Activity {
 				if (titleAux.length() > 0) {
 					database.open();
 					if (upd) {
+						System.out.println("--- UPDATE ---");
 						database.updateRecipe(id, titleAux, ingredientsAux,
 								instructionsAux, route);
 					} else {
+						System.out.println("--- CREO RECIPE ---");
 						database.createRecipe(titleAux, ingredientsAux,
 								instructionsAux, route);
 					}
 					database.close();
-					if(impFile){
-						Intent i = new Intent(getApplicationContext(), RecipeList.class);
+					if (impFile) {
+						Intent i = new Intent(getApplicationContext(),
+								RecipeList.class);
 						startActivity(i);
 					}
 					finish();
@@ -161,81 +169,45 @@ public class EditRecipe extends Activity {
 			}
 		});
 	}
-	
-	public static Bitmap decodeScaledBitmapFromSdCard(String filePath,
-	        int reqWidth, int reqHeight) {
 
-	    // First decode with inJustDecodeBounds=true to check dimensions
-	    final BitmapFactory.Options options = new BitmapFactory.Options();
-	    options.inJustDecodeBounds = true;
-	    BitmapFactory.decodeFile(filePath, options);
-
-	    // Calculate inSampleSize
-	    options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
-
-	    // Decode bitmap with inSampleSize set
-	    options.inJustDecodeBounds = false;
-	    return BitmapFactory.decodeFile(filePath, options);
-	}
-
-	public static int calculateInSampleSize(
-	        BitmapFactory.Options options, int reqWidth, int reqHeight) {
-	    // Raw height and width of image
-	    final int height = options.outHeight;
-	    final int width = options.outWidth;
-	    int inSampleSize = 1;
-
-	    if (height > reqHeight || width > reqWidth) {
-
-	        // Calculate ratios of height and width to requested height and width
-	        final int heightRatio = Math.round((float) height / (float) reqHeight);
-	        final int widthRatio = Math.round((float) width / (float) reqWidth);
-
-	        // Choose the smallest ratio as inSampleSize value, this will guarantee
-	        // a final image with both dimensions larger than or equal to the
-	        // requested height and width.
-	        inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
-	    }
-
-	    return inSampleSize;
-	}
-	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		if(resultCode == Activity.RESULT_OK){
+		if (resultCode == Activity.RESULT_OK) {
 			switch (requestCode) {
 			case CHANGE_IMAGE:
 				String oldRoute = data.getExtras().getString("oldRoute");
+				System.out.println("oldRoute -> "+oldRoute);
 				String newRoute = data.getExtras().getString("newRoute");
+				System.out.println("newRoute -> "+newRoute);
 				CopiarImagenAsyncTask ci = new CopiarImagenAsyncTask(image);
-				ci.execute(oldRoute, newRoute, getString(R.string.routeImgFiles));
+				ci.execute(oldRoute, newRoute,
+						getString(R.string.routeImgFiles));
 				route = newRoute;
 				break;
 			default:
 				break;
 			}
-		} 
+		}
 	}
-	
+
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if ((keyCode == KeyEvent.KEYCODE_BACK)) {
-			if(impFile){
+			if (impFile) {
 				database.open();
+				System.out.println("CREO RECIPE EN ONKEYDOWN");
 				database.createRecipe(titleAux, ingredientsAux,
 						instructionsAux, route);
 				database.close();
-				Toast.makeText(this, R.string.msgImpRecipe,
-						Toast.LENGTH_LONG).show();
+				Toast.makeText(this, R.string.msgImpRecipe, Toast.LENGTH_LONG)
+						.show();
 				finish();
 				Intent i = new Intent(this, RecipeList.class);
 				startActivity(i);
-				return true;	
+				return true;
 			}
 		}
 		return super.onKeyDown(keyCode, event);
-	}	
+	}
 }
-
-

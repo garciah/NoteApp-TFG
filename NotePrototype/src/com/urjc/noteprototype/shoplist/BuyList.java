@@ -131,7 +131,8 @@ public class BuyList extends ListActivity {
 		case MENU_OP3:
 			c.moveToPosition(info.position);
 			try {
-				String t = c.getString(c.getColumnIndexOrThrow(DatabaseHelper.getKeyTitle()));
+				String t = c.getString(c.getColumnIndexOrThrow(DatabaseHelper
+						.getKeyTitle()));
 				database.open();
 				cursor = database.getCursorElements(info.id);
 				items = new ArrayList<ElemBuyList>();
@@ -141,21 +142,26 @@ public class BuyList extends ListActivity {
 						String n = cursor.getString(1);
 						int a = cursor.getInt(2);
 						int ch = cursor.getInt(3);
-						ElemBuyList elem = new ElemBuyList(id, n, ch, a, info.id);
+						ElemBuyList elem = new ElemBuyList(id, n, ch, a,
+								info.id);
 						items.add(elem);
 					} while (cursor.moveToNext());
 				}
 				database.close();
-				file = HandlerFileImportExport.writeFileShopping(t, items, getString(R.string.routeSharingFile));
+				file = HandlerFileImportExport.writeFileShopping(t, items,
+						getString(R.string.routeSharingFile));
 				if (file != "") {
 					f = new File(file);
 					Uri path = Uri.fromFile(f);
 					Intent shareIntent = new Intent();
 					shareIntent.setAction(Intent.ACTION_SEND);
-					shareIntent.putExtra(Intent.EXTRA_TEXT, "Sharing File NoteForHome");
+					shareIntent.putExtra(Intent.EXTRA_TEXT,
+							"Sharing File NoteForHome");
 					shareIntent.putExtra(Intent.EXTRA_STREAM, path);
 					shareIntent.setType("application/octet-stream");
-					startActivityForResult(Intent.createChooser(shareIntent, "ShoppingList"),ACTIVITY_EXPORT);
+					startActivityForResult(
+							Intent.createChooser(shareIntent, "ShoppingList"),
+							ACTIVITY_EXPORT);
 				}
 
 			} catch (IOException e) {
@@ -164,24 +170,26 @@ public class BuyList extends ListActivity {
 			return true;
 		case MENU_OP4:
 			c.moveToPosition(info.position);
-				String ti = c.getString(c.getColumnIndexOrThrow(DatabaseHelper.getKeyTitle()));
-				database.open();
-				Cursor cursor = database.getCursorElements(info.id);
-				items = new ArrayList<ElemBuyList>();
-				if (cursor.moveToFirst()) {
-					do {
-						long id = cursor.getLong(0);
-						String n = cursor.getString(1);
-						int a = cursor.getInt(2);
-						int ch = cursor.getInt(3);
-						ElemBuyList elem = new ElemBuyList(id, n, ch, a, info.id);
-						items.add(elem);
-					} while (cursor.moveToNext());
-				}
-				database.close();
-				WriteAsynTask writeAsynTask = new WriteAsynTask(this, items);
-				writeAsynTask.execute("0006",ti,getString(R.string.routeExportFile));
-				return true;	
+			String ti = c.getString(c.getColumnIndexOrThrow(DatabaseHelper
+					.getKeyTitle()));
+			database.open();
+			Cursor cursor = database.getCursorElements(info.id);
+			items = new ArrayList<ElemBuyList>();
+			if (cursor.moveToFirst()) {
+				do {
+					long id = cursor.getLong(0);
+					String n = cursor.getString(1);
+					int a = cursor.getInt(2);
+					int ch = cursor.getInt(3);
+					ElemBuyList elem = new ElemBuyList(id, n, ch, a, info.id);
+					items.add(elem);
+				} while (cursor.moveToNext());
+			}
+			database.close();
+			WriteAsynTask writeAsynTask = new WriteAsynTask(this, items);
+			writeAsynTask.execute("0006", ti,
+					getString(R.string.routeExportFile));
+			return true;
 		default:
 			return super.onContextItemSelected(item);
 		}
