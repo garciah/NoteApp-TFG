@@ -1,0 +1,101 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:orientation="vertical"
+    tools:context="com.urjc.proto.MainActivity$PlaceholderFragment" >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="51dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:contentDescription="@string/empty"
+        android:src="@drawable/espiral2" />
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignLeft="@+id/imageView1"
+    android:layout_alignRight="@+id/imageView1"
+    android:layout_below="@+id/imageView1" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/yellow_backgroud"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp" >
+
+        <Button
+            android:id="@+id/Button01"
+            style="@style/button_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_touch"
+            android:text="@string/option1" />
+
+        <Button
+            android:id="@+id/Button02"
+            style="@style/button_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_touch"
+            android:text="@string/option2" />
+
+        <Button
+            android:id="@+id/Button03"
+            style="@style/button_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_touch"
+            android:text="@string/option3" />
+
+        <Button
+            android:id="@+id/Button04"
+            style="@style/button_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_touch"
+            android:text="@string/option4" />
+
+        <Button
+            android:id="@+id/Button05"
+            style="@style/button_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_touch"
+            android:text="@string/option5" />
+        
+        <Button
+            android:id="@+id/Button06"
+            style="@style/button_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_touch"
+            android:text="@string/option6" />
+        
+        <Button
+            android:id="@+id/Button07"
+            style="@style/button_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_touch"
+            android:text="@string/option7" />
+        
+        <Button
+            android:id="@+id/Button08"
+            style="@style/button_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_touch"
+            android:text="@string/option8" />
+    </LinearLayout>
+
+</ScrollView>
+</RelativeLayout>
