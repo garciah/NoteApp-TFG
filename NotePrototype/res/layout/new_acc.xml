@@ -22,22 +22,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/titleAccNew"
+        android:layout_alignRight="@+id/buttonSaveAcc"
         android:layout_marginLeft="18dp"
         android:layout_toRightOf="@+id/titleAccNew"
-        android:background="@color/white"
+        android:background="@drawable/notearea_style"
         android:ems="10"
         android:inputType="textFilter|textNoSuggestions|textCapSentences"
         android:maxLength="30"
         android:textColor="@color/black" />
 
-    <Button
-        android:id="@+id/buttonSaveAcc"
-        android:background="@color/Grey"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/editTextTitleAcc"
-        android:layout_below="@+id/editTextTitleAcc"
-        android:layout_marginTop="16dp"
-        android:text="@string/save" />
+     <Button
+         android:id="@+id/buttonSaveAcc"
+         style="@style/button_text"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentRight="true"
+         android:layout_below="@+id/editTextTitleAcc"
+         android:layout_margin="20dp"
+         android:background="@drawable/button_touch"
+         android:text="@string/save" />
 
 </RelativeLayout>

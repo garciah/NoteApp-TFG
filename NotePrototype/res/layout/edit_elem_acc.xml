@@ -5,60 +5,63 @@
     android:background="@color/black" >
 
     <TextView
-        android:id="@+id/textViewTagEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/Tag"
-        android:textColor="@color/white" />
-
-    <TextView
         android:id="@+id/textViewNumEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textViewTagEdit"
-        android:layout_below="@+id/textViewTagEdit"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="10dp"
         android:text="@string/number"
         android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/buttonSaveElemAcc"
+        style="@style/button_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/editTextTagE"
+        android:layout_margin="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_touch"
+        android:text="@string/save" />
 
     <EditText
         android:id="@+id/editTextNumE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textViewNumEdit"
-        android:layout_alignBottom="@+id/textViewNumEdit"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/buttonSaveElemAcc"
+        android:layout_marginLeft="5dp"
         android:layout_toRightOf="@+id/textViewNumEdit"
-        android:background="@color/white"
+        android:background="@drawable/notearea_style"
         android:ems="10"
-        android:maxLength="6"
-        android:inputType="numberDecimal">
-    </EditText>
+        android:inputType="numberDecimal"
+        android:maxLength="6" />
+
+    <TextView
+        android:id="@+id/textViewTagEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/editTextNumE"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="14dp"
+        android:text="@string/Tag"
+        android:textColor="@color/white" />
 
     <EditText
         android:id="@+id/editTextTagE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/editTextNumE"
+        android:layout_alignRight="@+id/buttonSaveElemAcc"
         android:layout_alignTop="@+id/textViewTagEdit"
-        android:background="@color/white"
+        android:background="@drawable/notearea_style"
         android:ems="10"
-        android:maxLength="30"
-        android:inputType="textNoSuggestions|textCapSentences" />
+        android:inputType="textNoSuggestions|textCapSentences"
+        android:maxLength="30" >
 
-    <Button
-        android:id="@+id/buttonSaveElemAcc"
-        android:background="@color/Grey"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/editTextNumE"
-        android:layout_below="@+id/editTextNumE"
-        android:layout_marginTop="15dp"
-        android:text="@string/save" />
+        <requestFocus />
+    </EditText>
 
 </RelativeLayout>
 

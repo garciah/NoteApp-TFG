@@ -22,15 +22,16 @@ public class MenuApp extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.menu);
-		Button opNote = (Button) findViewById(R.id.buttonView);
-		Button opPwd = (Button) findViewById(R.id.butPwd);
-		Button opBuy = (Button) findViewById(R.id.butBuy);
-		Button opAbout = (Button) findViewById(R.id.butAbout);
-		Button opTask = (Button) findViewById(R.id.butTasks);
-		Button opRecipe = (Button) findViewById(R.id.buttonRecipe);
-		Button opAcc = (Button) findViewById(R.id.buttonAcc);
-		Button opFile = (Button) findViewById(R.id.butReadFile);
+		setContentView(R.layout.fragment_main_menu);
+		Button opNote = (Button) findViewById(R.id.Button01);
+		Button opPwd = (Button) findViewById(R.id.Button02);
+		Button opBuy = (Button) findViewById(R.id.Button03);
+		Button opTask = (Button) findViewById(R.id.Button04);
+		Button opRecipe = (Button) findViewById(R.id.Button05);
+		Button opAcc = (Button) findViewById(R.id.Button06);
+		Button opFile = (Button) findViewById(R.id.Button07);
+		Button opAbout = (Button) findViewById(R.id.Button08);
+		
 		opNote.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {

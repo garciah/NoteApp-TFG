@@ -1,4 +1,5 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollRecipe"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,16 +13,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/black" >
-        
-        <LinearLayout
-            android:layout_width="0px"
-            android:layout_height="0px"
-            android:focusable="true"
-            android:focusableInTouchMode="true" >
-
-            <requestFocus />
-        </LinearLayout>        
+        android:background="@color/black"
+        android:focusableInTouchMode="true" >
 
         <TextView
             android:id="@+id/textViewInstruction"
@@ -41,11 +34,12 @@
             android:layout_marginTop="14dp"
             android:text="@string/Ingredients"
             android:textColor="@color/white" />
-
+        
         <ImageView
             android:id="@+id/imageRecipe"
             android:layout_width="200dp"
             android:layout_height="200dp"
+            android:adjustViewBounds="true"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:contentDescription="@string/photoRecipe"
@@ -56,9 +50,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
+            android:layout_alignRight="@+id/buttonSaveRecipe"
             android:layout_below="@+id/textViewAccTitle"
-            android:background="@color/Yellow"
+            android:background="@drawable/notearea_style"
             android:ems="10"
             android:inputType="textNoSuggestions|textCapSentences"
             android:maxLength="40"
@@ -72,7 +66,7 @@
             android:layout_alignLeft="@+id/textViewInstruction"
             android:layout_alignRight="@+id/editTextIngredients"
             android:layout_below="@+id/textViewInstruction"
-            android:background="@color/Yellow"
+            android:background="@drawable/notearea_style"
             android:ems="10"
             android:inputType="textMultiLine|textNoSuggestions|textCapSentences" />
 
@@ -81,42 +75,65 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/textViewIngredients"
-            android:layout_alignParentRight="true"
+            android:layout_alignRight="@+id/buttonSaveRecipe"
             android:layout_below="@+id/textViewIngredients"
-            android:background="@color/Yellow"
+            android:background="@drawable/notearea_style"
             android:ems="10"
             android:inputType="textMultiLine|textNoSuggestions|textCapSentences" />
+
+        <Button
+            android:id="@+id/buttonSaveRecipe"
+            style="@style/button_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/editTextInstruction"
+            android:layout_margin="20dp"
+            android:background="@drawable/button_touch"
+            android:text="@string/save" />
 
         <TextView
             android:id="@+id/textViewAccTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/editTextTitleRecipe"
+            android:layout_alignParentLeft="true"
             android:layout_below="@+id/imageRecipe"
+            android:layout_marginTop="52dp"
             android:text="@string/titleNote"
             android:textColor="@color/white" />
 
-        <Button
-            android:id="@+id/buttonSaveRecipe"
-            android:background="@color/Grey"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/editTextInstruction"
-            android:layout_below="@+id/editTextInstruction"
-            android:layout_marginTop="26dp"
-            android:text="@string/save" />
+            android:layout_alignRight="@+id/imageRecipe"
+            android:layout_below="@+id/imageRecipe"
+            android:layout_toRightOf="@+id/textViewAccTitle"
+            android:gravity="right|center" >
 
-        <ImageButton
-            android:id="@+id/buttonSearch"
-            android:background="@color/Grey"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/imageRecipe"
-            android:layout_marginTop="27dp"
-            android:layout_toRightOf="@+id/imageRecipe"
-            android:contentDescription="@string/empty"
-            android:src="@drawable/searchimg"
-            android:text="@string/empty" />
+            <ImageButton
+                android:id="@+id/buttonPhoto"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/button_touch_secondstyle"
+                android:contentDescription="@string/empty"
+                android:scaleType="fitStart"
+                android:src="@drawable/camera"
+                android:text="@string/empty" />
+
+            <ImageButton
+                android:id="@+id/buttonSearch"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/button_touch_secondstyle"
+                android:contentDescription="@string/empty"
+                android:scaleType="fitStart"
+                android:src="@drawable/gallery"
+                android:text="@string/empty" />
+
+        </LinearLayout>
+
     </RelativeLayout>
 
 </ScrollView>

@@ -1,4 +1,4 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,73 +9,61 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".EditNote" >
 
-    <RelativeLayout
+    <TextView
+        android:id="@+id/titleNoteNew"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:text="@string/titleNote"
+        android:textColor="@color/white" />
+
+    <EditText
+        android:id="@+id/editTextTitleNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/titleNoteNew"
+        android:layout_alignRight="@+id/editTextBodyNote"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/titleNoteNew"
+        android:background="@drawable/notearea_style"
+        android:ems="10"
+        android:inputType="textFilter|textNoSuggestions|textCapSentences"
+        android:maxLength="30"
+        android:padding="4dp"
+        android:textColor="@color/black" />
+
+    <EditText
+        android:id="@+id/editTextBodyNote"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/black" >
+        android:layout_above="@+id/buttonSaveNote"
+        android:layout_alignLeft="@+id/titleNoteNew"
+        android:layout_alignRight="@+id/buttonSaveNote"
+        android:layout_below="@+id/titleNoteNew"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/notearea_style"
+        android:ems="10"
+        android:gravity="left"
+        android:inputType="textMultiLine|textFilter|textNoSuggestions|textCapSentences"
+        android:padding="4dp"
+        android:scrollbars="vertical"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="italic" />
 
-        <LinearLayout
-            android:layout_width="0px"
-            android:layout_height="0px"
-            android:focusable="true"
-            android:focusableInTouchMode="true" >
+    <Button
+        android:id="@+id/buttonSaveNote"
+        style="@style/button_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="10dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/button_touch"
+        android:text="@string/save" />
 
-            <requestFocus />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/titleNoteNew"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="10dp"
-            android:text="@string/titleNote"
-            android:textColor="@color/white" />
-
-        <EditText
-            android:id="@+id/editTextTitleNote"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/titleNoteNew"
-            android:layout_alignRight="@+id/editTextBodyNote"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_toRightOf="@+id/titleNoteNew"
-            android:background="@color/white"
-            android:ems="10"
-            android:inputType="textFilter|textNoSuggestions|textCapSentences"
-            android:maxLength="30"
-            android:textColor="@color/black" />
-
-        <EditText
-            android:id="@+id/editTextBodyNote"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_alignLeft="@+id/titleNoteNew"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/titleNoteNew"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="15dp"
-            android:background="@color/Yellow"
-            android:ems="10"
-            android:gravity="left"
-            android:inputType="textMultiLine|textFilter|textNoSuggestions|textCapSentences"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="italic" />
-
-        <Button
-            android:id="@+id/buttonSaveNote"
-            android:background="@color/Grey"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/editTextBodyNote"
-            android:text="@string/save" />
-    </RelativeLayout>
-
-</ScrollView>
+</RelativeLayout>

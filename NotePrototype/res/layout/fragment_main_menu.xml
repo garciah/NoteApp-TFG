@@ -6,15 +6,6 @@
     android:orientation="vertical"
     tools:context="com.urjc.proto.MainActivity$PlaceholderFragment" >
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="51dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:contentDescription="@string/empty"
-        android:src="@drawable/espiral2" />
-
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -98,4 +89,14 @@
     </LinearLayout>
 
 </ScrollView>
+
+<ImageView
+    android:id="@+id/imageView1"
+    android:layout_width="320dp"
+    android:layout_height="51dp"
+    android:layout_alignParentTop="true"
+    android:layout_centerHorizontal="true"
+    android:contentDescription="@string/empty"
+    android:src="@drawable/espiral2" />
+
 </RelativeLayout>

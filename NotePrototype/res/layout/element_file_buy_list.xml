@@ -8,43 +8,21 @@
     android:gravity="center"
     android:orientation="horizontal" >
 
-    <ImageButton
-        android:id="@+id/imageButtonEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/imageButtonDel"
-        android:contentDescription="@string/menuList2"
-        android:padding="0dp"
-        android:src="@drawable/edit" />
-    
-    <ImageButton
-        android:id="@+id/imageButtonDel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_alignTop="@+id/textViewNumElem"
-        android:contentDescription="@string/delete"
-        android:padding="0dp"
-        android:src="@drawable/delete" />
-
     <CheckBox
         android:id="@+id/checkElem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
         android:text="@string/empty" />
 
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/textViewNumElem"
         android:orientation="vertical" >
 
@@ -54,7 +32,8 @@
             android:layout_height="20dp"
             android:contentDescription="@string/more"
             android:padding="0dp"
-            android:src="@drawable/more" />
+            android:src="@drawable/more"
+            android:layout_margin="5dp" />
 
         <ImageButton
             android:id="@+id/ImageButtonLess"
@@ -62,7 +41,9 @@
             android:layout_height="20dp"
             android:contentDescription="@string/less"
             android:padding="0dp"
-            android:src="@drawable/less" />
+            android:src="@drawable/less"
+            android:layout_margin="5dp" />
+
     </LinearLayout>
 
     <TextView
@@ -70,8 +51,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/imageButtonEdit"
+        android:layout_toLeftOf="@+id/linearImage"
         android:layout_toRightOf="@+id/imageRecipe"
+        android:text="@string/empty"
+        android:layout_centerVertical="true"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ImageView
@@ -79,8 +62,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textViewNumElem"
-        android:layout_toRightOf="@+id/linearLayout1"
         android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/linearLayout1"
         android:contentDescription="@string/empty"
         android:src="@drawable/lbl" />
 
@@ -95,5 +78,37 @@
         android:text="@string/defaultAmount"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/Red" />
+
+    <LinearLayout
+        android:id="@+id/linearImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true" >
+
+        <ImageButton
+            android:id="@+id/imageButtonEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/button_touch_secondstyle"
+            android:contentDescription="@string/menuList2"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/edit" />
+
+        <ImageButton
+            android:id="@+id/imageButtonDel"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/button_touch_secondstyle"
+            android:contentDescription="@string/delete"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/delete" />
+    </LinearLayout>
 
 </RelativeLayout>

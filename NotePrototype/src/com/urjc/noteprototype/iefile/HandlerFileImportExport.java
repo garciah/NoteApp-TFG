@@ -5,18 +5,23 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.urjc.noteprototype.account.AccountElem;
 import com.urjc.noteprototype.note.Note;
 import com.urjc.noteprototype.pwd.PwdClass;
+import com.urjc.noteprototype.recipe.CopiarImagenAsyncTask;
 import com.urjc.noteprototype.recipe.RecipeClass;
 import com.urjc.noteprototype.shoplist.ElemBuyList;
 import com.urjc.noteprototype.task.TaskClass;
 
+import android.R;
 import android.os.Environment;
 import android.util.Log;
 
@@ -320,7 +325,9 @@ public class HandlerFileImportExport {
 		salida.write(COD_RECIPE + "\n");
 		salida.write(title + "\n");
 		salida.write(ingredients + "\n");
+		salida.write(";;" + "\n");
 		salida.write(instructions + "\n");
+		salida.write(";;" + "\n");
 		salida.write(imageName + "\n");
 		salida.flush();
 		fos.close();
@@ -334,10 +341,43 @@ public class HandlerFileImportExport {
 		BufferedReader salida = new BufferedReader(isw);
 		salida.readLine();
 		String title = salida.readLine();
-		String ingredients = salida.readLine();
-		String instructions = salida.readLine();
+		String aux = "";
+		String ingredients = salida.readLine()+"\n";
+		aux = salida.readLine();
+		while (!aux.equals(";;")) {
+			ingredients = ingredients + aux + "\n";
+			aux = salida.readLine();
+		}
+		String instructions = salida.readLine()+"\n";
+		aux = salida.readLine();
+		while (!aux.equals(";;")) {
+			instructions = instructions + aux + "\n";
+			aux = salida.readLine();
+		}
 		String imageName = salida.readLine();
 		fis.close();
+		
+		////////
+		try {
+			int sobra = titleFile.lastIndexOf("/");
+			String ruta = titleFile.substring(0, sobra)+"/"+imageName;
+		        File source= new File(ruta);
+		        File destination= new File("/sdcard/NoteForHome/RecipeImg/" , imageName);
+		       
+				InputStream in = new FileInputStream(source);
+				OutputStream out = new FileOutputStream(destination);
+				byte[] buf = new byte[1024];
+				int len;
+				while ((len = in.read(buf)) > 0) {
+					out.write(buf, 0, len);
+				}
+				in.close();
+				out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		///////
+		
 		RecipeClass r = new RecipeClass(0, title, ingredients, instructions,
 				imageName);
 		return r;

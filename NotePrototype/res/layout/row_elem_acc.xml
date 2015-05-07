@@ -8,27 +8,6 @@
     android:gravity="center"
     android:orientation="horizontal" >
 
-    <ImageButton
-        android:id="@+id/imageButtonEditAcc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/imageButtonDelAcc"
-        android:contentDescription="@string/menuList2"
-        android:padding="0dp"
-        android:src="@drawable/edit" />
-    
-    <ImageButton
-        android:id="@+id/imageButtonDelAcc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:contentDescription="@string/delete"
-        android:padding="0dp"
-        android:src="@drawable/delete" />
-
     <ImageView
         android:id="@+id/imageRecipe"
         android:layout_width="wrap_content"
@@ -42,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/imageButtonEditAcc"
+        android:layout_toLeftOf="@+id/linearImageElem"
         android:text="@string/empty"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -58,5 +37,38 @@
         android:text="@string/empty"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold" />
+    
+    
+    <LinearLayout
+        android:id="@+id/linearImageElem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true" >
+
+        <ImageButton
+            android:id="@+id/imageButtonEditAcc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/button_touch_secondstyle"
+            android:contentDescription="@string/menuList2"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/edit" />
+
+        <ImageButton
+            android:id="@+id/imageButtonDelAcc"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/button_touch_secondstyle"
+            android:contentDescription="@string/delete"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/delete" />
+    </LinearLayout>
 
 </RelativeLayout>

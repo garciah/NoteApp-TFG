@@ -10,6 +10,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -19,7 +21,8 @@
         <activity
             android:name="com.urjc.noteprototype.InitWindows"
             android:label="@string/app_name"
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,94 +31,123 @@
         </activity>
         <activity
             android:name="com.urjc.noteprototype.MenuApp"
-            android:label="@string/menu" >
+            android:label="@string/menu"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.urjc.noteprototype.note.EditNote"
-            android:label="@string/butMenu1" >
+            android:label="@string/butMenu1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
             android:name="com.urjc.noteprototype.pwd.EditPwd"
-            android:label="@string/butMenu2" >
+            android:label="@string/butMenu2"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
             android:name="com.urjc.noteprototype.pwd.ViewPwd"
-            android:label="@string/butMenu2" >
+            android:label="@string/butMenu2"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.urjc.noteprototype.note.NoteList"
-            android:label="@string/butMenu1" >
+            android:label="@string/butMenu1"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.urjc.noteprototype.pwd.PasswordsList"
-            android:label="@string/butMenu2" >
+            android:label="@string/butMenu2"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.urjc.noteprototype.shoplist.BuyList"
-            android:label="@string/shopList" >
+            android:label="@string/shopList"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.urjc.noteprototype.shoplist.EditBuy"
-            android:label="@string/shopList" >
+            android:label="@string/shopList"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateUnchanged|adjustResize" >
         </activity>
         <activity
             android:name="com.urjc.noteprototype.shoplist.BuyElemList"
-            android:label="@string/elemList" >
+            android:label="@string/elemList"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.urjc.noteprototype.task.TaskList"
-            android:label="@string/tasks" >
+            android:label="@string/tasks"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.urjc.noteprototype.task.EditTask"
             android:label="@string/task"
-            android:theme="@android:style/Theme.Dialog" >
+            android:theme="@style/myDialogTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
             android:name="com.urjc.noteprototype.shoplist.EditElement"
             android:label="@string/elemList"
-            android:theme="@android:style/Theme.Dialog" >
+            android:theme="@android:style/Theme.Dialog"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
             android:name="com.urjc.noteprototype.recipe.RecipeList"
-            android:label="@string/recipes" >
+            android:label="@string/recipes"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.urjc.noteprototype.recipe.FileChooser"
-            android:label="@string/recipes" >
+            android:label="@string/recipes"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.urjc.noteprototype.recipe.EditRecipe"
-            android:label="@string/recipes" >
+            android:label="@string/recipes"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="com.urjc.noteprototype.account.AccList"
-            android:label="@string/accounts" >
+            android:label="@string/accounts"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.urjc.noteprototype.account.EditAcc"
-            android:label="@string/accounts" >
+            android:label="@string/accounts"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
             android:name="com.urjc.noteprototype.account.TableAccount"
-            android:label="@string/accounts" >
+            android:label="@string/accounts"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.urjc.noteprototype.account.AccElemList"
-            android:label="@string/accounts" >
+            android:label="@string/accounts"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.urjc.noteprototype.account.EditElementAcc"
-            android:label="@string/accounts" >
+            android:label="@string/accounts"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
             android:name="com.urjc.noteprototype.AboutApp"
             android:label="@string/about_tit"
-            android:theme="@android:style/Theme.Dialog" >
+            android:theme="@android:style/Theme.Dialog"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.urjc.noteprototype.iefile.ChargeFile"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -155,11 +187,13 @@
         </activity>
         <activity
             android:name="com.urjc.noteprototype.iefile.FileInputChooser"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.urjc.noteprototype.HelpActivity"
-            android:label="@string/menu_help" >
+            android:label="@string/menu_help"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 

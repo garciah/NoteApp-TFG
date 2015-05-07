@@ -95,4 +95,16 @@
     <string name="menu_help">HELP</string>
     <string name="sections">SECTIONS\n</string>
     
+    <string name="titleContextMenu">Select The Action</string>
+    
+    <!-- PANTALLA MENU -->
+	<string name="option1">NOTES</string>
+	<string name="option2">PASSWORDS</string>
+	<string name="option3">SHOPPING LIST</string>
+	<string name="option4">TASK</string>
+	<string name="option5">RECIPES</string>
+	<string name="option6">ACCOUNTS</string>
+	<string name="option7">IMPORT EXTERNAL FILE</string>
+	<string name="option8">ABOUT THIS APP</string>
+    
 </resources>

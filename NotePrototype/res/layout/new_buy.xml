@@ -23,9 +23,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/titleBuyNew"
+        android:layout_alignRight="@+id/buttonSaveBuy"
         android:layout_marginLeft="18dp"
         android:layout_toRightOf="@+id/titleBuyNew"
-        android:background="@color/white"
+        android:background="@drawable/notearea_style"
         android:ems="10"
         android:inputType="textFilter|textNoSuggestions|textCapSentences"
         android:maxLength="30"
@@ -33,12 +34,14 @@
 
     <Button
         android:id="@+id/buttonSaveBuy"
-        android:background="@color/Grey"
+        style="@style/button_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/editTextTitleBuy"
+        android:layout_alignParentRight="true"
         android:layout_below="@+id/editTextTitleBuy"
-        android:layout_marginTop="16dp"
+        android:layout_margin="20dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/button_touch"
         android:text="@string/save" />
 
 </RelativeLayout>

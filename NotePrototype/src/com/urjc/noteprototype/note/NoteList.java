@@ -95,6 +95,7 @@ public class NoteList extends ListActivity {
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
+		menu.setHeaderTitle(R.string.titleContextMenu);
 		menu.add(Menu.NONE, MENU_OP1, Menu.NONE, R.string.menuList1);
 		menu.add(Menu.NONE, MENU_OP2, Menu.NONE, R.string.shareFile);
 		menu.add(Menu.NONE, MENU_OP3, Menu.NONE, R.string.exportFile);

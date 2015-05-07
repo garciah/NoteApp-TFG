@@ -93,5 +93,17 @@
     <string name="ShList_h">LISTAS DE LA COMPRA</string>
     <string name="ShList_exp">Se muestra la lista con las listas de la compra almacenadas. Para crear una nueva lista pulsar el botón de “Añadir” (icono cruz). Una vez creada una lista se le podrán añadir tanto elemento como se desee.\n\nDesde la pantalla inicial estarán disponibles las siguientes acciones:\n\t-	Consultar: Pulsación corta sobre la lista\n\t-	Editar nombre/Exportar/Compartir/Borrar: Pulsación larga sobre la lista\n\nDesde la pantalla de consulta de una lista se pueden  Añadir, Editar o Borrar los datos.\n</string>
     <string name="menu_help">AYUDA</string>
-        <string name="sections">SECCIONES\n</string>
+    <string name="sections">SECCIONES\n</string>
+        
+    <string name="titleContextMenu">Tarea a realizar</string>
+        
+        <!-- PANTALLA MENU -->
+	<string name="option1">NOTAS</string>
+	<string name="option2">CONTRASEÑAS</string>
+	<string name="option3">LISTAS DE LA COMPRA</string>
+	<string name="option4">TAREAS</string>
+	<string name="option5">RECETAS</string>
+	<string name="option6">CUENTAS</string>
+	<string name="option7">IMPORTAR FICHERO EXTERNO</string>
+	<string name="option8">ACERCA DE ESTA APP</string>    
 </resources>
